@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\ScheduleLayout;
 use App\Http\Requests\StoreScheduleLayoutRequest;
 use App\Http\Requests\UpdateScheduleLayoutRequest;
+use App\Models\ScheduleLayout;
 
 class ScheduleLayoutController extends Controller
 {
@@ -31,7 +31,6 @@ class ScheduleLayoutController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreScheduleLayoutRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreScheduleLayoutRequest $request)
@@ -42,7 +41,6 @@ class ScheduleLayoutController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ScheduleLayout  $scheduleLayout
      * @return \Illuminate\Http\Response
      */
     public function show(ScheduleLayout $scheduleLayout)
@@ -53,7 +51,6 @@ class ScheduleLayoutController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ScheduleLayout  $scheduleLayout
      * @return \Illuminate\Http\Response
      */
     public function edit(ScheduleLayout $scheduleLayout)
@@ -64,8 +61,6 @@ class ScheduleLayoutController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateScheduleLayoutRequest  $request
-     * @param  \App\Models\ScheduleLayout  $scheduleLayout
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateScheduleLayoutRequest $request, ScheduleLayout $scheduleLayout)
@@ -76,7 +71,6 @@ class ScheduleLayoutController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ScheduleLayout  $scheduleLayout
      * @return \Illuminate\Http\Response
      */
     public function destroy(ScheduleLayout $scheduleLayout)

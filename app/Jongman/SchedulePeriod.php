@@ -2,18 +2,15 @@
 
 namespace App\Jongman;
 
-/**
- * 
- */
 use Illuminate\Support\Carbon;
 
 class SchedulePeriod
 {
     public function __construct(
-        protected Carbon $begin, 
-        protected Carbon $end, 
+        protected Carbon $begin,
+        protected Carbon $end,
         protected string $label = null)
-    {      
+    {
     }
 
     public function begin(): string
@@ -40,9 +37,10 @@ class SchedulePeriod
     {
         if (empty($this->label)) {
             $format = config('jongman.time_format', 'H:i');
-            if (isset($dateOverride) && !$this->begin->eq($dateOverride)) {
+            if (isset($dateOverride) && ! $this->begin->eq($dateOverride)) {
                 return $dateOverride->format($format);
             }
+
             return $this->begin->format($format);
         }
 
@@ -53,10 +51,11 @@ class SchedulePeriod
     {
         if (empty($this->label)) {
             $format = config('jongman.time_format', 'H:i');
+
             return $this->end->format($format);
         }
 
-        return '(' . $this->label . ')';
+        return '('.$this->label.')';
     }
 
     public function isReservable(): bool
@@ -66,7 +65,7 @@ class SchedulePeriod
 
     public function isLabelled(): bool
     {
-        return !empty($this->label);
+        return ! empty($this->label);
     }
 
     public function toUtc(): SchedulePeriod
@@ -77,34 +76,33 @@ class SchedulePeriod
     public function toTimezone($timezone): SchedulePeriod
     {
         return new SchedulePeriod(
-            $this->begin->timezone($timezone), 
+            $this->begin->timezone($timezone),
             $this->end->timezone($timezone),
             $this->label
-        );    
+        );
     }
 
     /**
-	 * Compares the starting datetimes
-	 */
-	public function compare(SchedulePeriod $other)
-	{
-		if ($this->begin->lt($other)) {
+     * Compares the starting datetimes
+     */
+    public function compare(SchedulePeriod $other)
+    {
+        if ($this->begin->lt($other)) {
             return -1;
-        }else if ($this->begin->gt($other)) {
+        } elseif ($this->begin->gt($other)) {
             return 1;
         }
 
         return 0;
-	}
+    }
 
-	public function beginsBefore(Carbon $date): bool
-	{
-		return $this->begin->lessThan($date);
-	}
+    public function beginsBefore(Carbon $date): bool
+    {
+        return $this->begin->lessThan($date);
+    }
 
     public function __toString()
-	{
-		return sprintf("Begin: %s End: %s Label: %s", $this->begin, $this->end, $this->label());
-	}
-
+    {
+        return sprintf('Begin: %s End: %s Label: %s', $this->begin, $this->end, $this->label());
+    }
 }
