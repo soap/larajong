@@ -21,7 +21,7 @@ return new class extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->smallInteger('day_of_week')->nullable();
-            $table->foreignId('layout_id');
+            $table->foreignId('schedule_layout_id');
             $table->timestamps();
         });
     }

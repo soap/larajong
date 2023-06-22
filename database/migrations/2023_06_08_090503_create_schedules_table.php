@@ -27,7 +27,7 @@ return new class extends Migration
             $table->boolean('show_summary')->default(0)->comment('Show summary or not for this schedule');
             $table->string('admin_email')->nullable();
             $table->boolean('notify_admin')->default(0);
-            $table->foreignId('layout_id');
+            $table->foreignId('schedule_layout_id');
             $table->timestamps();
         });
     }
