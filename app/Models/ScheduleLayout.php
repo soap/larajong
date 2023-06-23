@@ -17,4 +17,9 @@ class ScheduleLayout extends Model
     {
         return $this->hasMany(TimeBlock::class);
     }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }
