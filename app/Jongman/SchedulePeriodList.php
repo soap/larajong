@@ -17,7 +17,7 @@ class SchedulePeriodList
     public function add(SchedulePeriod $period)
     {
         if (! $period->isReservable()) {
-
+name
         }
 
         if ($this->alreadyAdded($period->beginDate(), $period->endDate())) {

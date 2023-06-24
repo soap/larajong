@@ -6,5 +6,5 @@ enum PeriodTypeEnum: int
 {
     case RESERVABLE = 1;
 
-    case UNRESERVABLE = 2;
+    case NONRESERVABLE = 2;
 }
