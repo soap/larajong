@@ -70,4 +70,27 @@ class Time
 	{
         return $this->toString();
   	}
+
+	/**
+	 * Compares this time to the one passed in
+	 * Returns:
+	 * -1 if this time is less than the passed in time
+	 * 0 if the times are equal
+	 * 1 if this time is greater than the passed in time
+	 * @param Time $time
+	 * @param Carbon $comparisonDate date to be used for time comparison
+	 * @return int comparison result
+	 */
+	public function compare(Time $time, $comparisonDate = null)
+	{
+		if ($comparisonDate != null)
+		{
+			$myDate = Carbon::create($comparisonDate->year, $comparisonDate->month, $comparisonDate->day, $this->hour, $this->minute, $this->second, $this->timezone);
+			$otherDate = Carbon::create($comparisonDate->year, $comparisonDate->month, $comparisonDate->day, $time->hour, $time->minute, $time->second, $time->timezone);
+			
+			return ($myDate->compare($otherDate));
+		}
+		
+		return $this->getDate()->compare($time->getDate());
+	}
 }

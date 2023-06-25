@@ -7,6 +7,7 @@ use App\Enums\PeriodTypeEnum;
 use App\Jongman\Time;
 use App\Jongman\Contracts\LayoutScheduleInterface;
 use App\Jongman\Layouts\LayoutPeriod;
+use Illuminate\Support\Carbon;
 
 class LayoutSchedule implements LayoutScheduleInterface
 {
@@ -57,7 +58,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 		{
 			if ($this->usingDailyLayouts)
 			{
-				throw new Exception('ScheduleLayout->GetSlots() $dayOfWeek required when using daily layouts');
+				throw new Exception('LayoutSchedule->getSlots() $dayOfWeek required when using daily layouts');
 			}
 			$periods = $this->_periods;
 		}
@@ -65,11 +66,13 @@ class LayoutSchedule implements LayoutScheduleInterface
 		{
 			if (!$this->usingDailyLayouts)
 			{
-				throw new Exception('ScheduleLayout->GetSlots() $dayOfWeek cannot be provided when using single layout');
+				throw new Exception('LayoutSchedule->getSlots() $dayOfWeek cannot be provided when using single layout');
 			}
 			$periods = $this->_periods[$dayOfWeek];
 		}
+
 		$this->sortItems($periods);
+
 		return $periods;
 	}
 
@@ -122,7 +125,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 	 * @param Date $end
 	 * @return bool
 	 */
-	protected function spansMidnight(RFDate $start, RFDate $end)
+	protected function spansMidnight(Carbon $start, Carbon $end)
 	{
 		return !$start->dateEquals($end) && !$end->isMidnight();
 	}
@@ -133,7 +136,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 	 * @param bool $hideBlockedPeriods Get blocked period (unreservable) or not
 	 * @return array|SchedulePeriod[]
 	 */
-	public function getLayout(RFDate $layoutDate, $hideBlockedPeriods = false)
+	public function getLayout(Carbon $layoutDate, $hideBlockedPeriods = false)
 	{
 		if ($this->usingDailyLayouts)
 		{
@@ -222,9 +225,9 @@ class LayoutSchedule implements LayoutScheduleInterface
 		return $layout;
 	}
 
-	private function getLayoutDaily(RFDate $requestedDate, $hideBlockedPeriods = false)
+	private function getLayoutDaily(Carbon $requestedDate, $hideBlockedPeriods = false)
 	{
-		if ($requestedDate->timezone() != $this->targetTimezone)
+		if ($requestedDate->timezone != $this->targetTimezone)
 		{
 			throw new Exception('Target timezone and requested timezone do not match');
 		}
@@ -236,7 +239,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 		}
 
 		// check cache
-		$baseDateInLayoutTz = RFDate::create($requestedDate->year(), $requestedDate->month(), $requestedDate->day(),
+		$baseDateInLayoutTz = Carbon::create($requestedDate->year(), $requestedDate->month(), $requestedDate->day(),
 										   0, 0, 0, $this->layoutTimezone);
 
 
@@ -268,8 +271,10 @@ class LayoutSchedule implements LayoutScheduleInterface
 			}
 		}
 		$layout = $list->getItems();
+		
 		$this->sortItems($layout);
 		$this->addCached($layout, $requestedDate);
+
 		return $layout;
 	}
 
@@ -325,19 +330,19 @@ class LayoutSchedule implements LayoutScheduleInterface
 		return null;
 	}
 
-	private function bothDatesAreOff(RFDate $start, RFDate $end, RFDate $layoutDate)
+	private function bothDatesAreOff(Carbon $start, Carbon $end, Carbon $layoutDate)
 	{
 		return !$start->dateEquals($layoutDate) && !$end->dateEquals($layoutDate);
 	}
 
-	private function buildPeriod($periodType, RFDate $start, RFDate $end, $label, $labelEnd = null)
+	private function buildPeriod($periodType, Carbon $start, Carbon $end, $label, $labelEnd = null)
 	{
 		return new $periodType($start, $end, $label, $labelEnd);
 	}
 
 	protected function sortItems(&$items)
 	{
-		usort($items, array("RFLayoutSchedule", "SortBeginTimes"));
+		usort($items, array("LayoutSchedule", "sortBeginTimes"));
 	}
 
 	public function timezone()
@@ -358,7 +363,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 	 */
 	static function sortBeginTimes($period1, $period2)
 	{
-		return $period1->Compare($period2);
+		return $period1->compare($period2);
 	}
 
 	/**
@@ -369,9 +374,10 @@ class LayoutSchedule implements LayoutScheduleInterface
 	 */
 	public static function parse($timezone, $reservableSlots, $blockedSlots)
 	{
-		$parser = new RFLayoutParser($timezone);
+		$parser = new LayoutParser($timezone);
 		$parser->addReservable($reservableSlots);
 		$parser->addBlocked($blockedSlots);
+
 		return $parser->getLayout();
 	}
 
@@ -389,7 +395,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 			throw new Exception(sprintf('LayoutParser ParseDaily missing slots. $reservableSlots=%s, $blockedSlots=%s',
 										count($reservableSlots), count($blockedSlots)));
 		}
-		$parser = new RFLayoutParser($timezone);
+		$parser = new LayoutParser($timezone);
 
 		foreach (RFDayOfWeek::Days() as $day)
 		{
@@ -404,7 +410,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 	 * @param Date $date
 	 * @return RFSchedulePeriod period which occurs at this datetime. Includes start time, excludes end time
 	 */
-	public function getPeriod(RFDate $date)
+	public function getPeriod(Carbon $date)
 	{
 		$timezone = $this->layoutTimezone;
 		$tempDate = $date->toTimezone($timezone);
@@ -413,9 +419,9 @@ class LayoutSchedule implements LayoutScheduleInterface
 		/** @var $period LayoutPeriod */
 		foreach ($periods as $period)
 		{
-			$start = RFDate::create($tempDate->year(), $tempDate->month(), $tempDate->day(), $period->start->hour(),
+			$start = Carbon::create($tempDate->year(), $tempDate->month(), $tempDate->day(), $period->start->hour(),
 								  $period->start->Minute(), 0, $timezone);
-			$end = RFDate::create($tempDate->year(), $tempDate->month(), $tempDate->day(), $period->end->hour(),
+			$end = Carbon::create($tempDate->year(), $tempDate->month(), $tempDate->day(), $period->end->hour(),
 								$period->end->minute(), 0, $timezone);
 
 			if ($end->lessThan($start) || $end->isMidnight())
