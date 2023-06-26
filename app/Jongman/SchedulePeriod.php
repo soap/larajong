@@ -63,7 +63,7 @@ class SchedulePeriod
         return true;
     }
 
-    public function isLabelled(): bool
+    public function isLabeled(): bool
     {
         return ! empty($this->label);
     }

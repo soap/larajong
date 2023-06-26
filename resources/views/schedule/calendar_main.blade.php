@@ -15,7 +15,7 @@
             </td>
         
         @foreach($slots as $slot)
-            <!-- call SlotFactory::display($slot, $slotRef, true, $this);
+            <!-- call SlotFactory::display($slot, $slotRef, true, $this); -->
         @endforeach
         </tr>
     @endforeach

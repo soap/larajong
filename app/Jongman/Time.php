@@ -24,8 +24,9 @@ class Time
 
     }
 
-    public function parse($time, $timezone = null)
+    public static function parse($time, string $timezone = '')
     {
+		$timezone = empty($timezone) ? config('app.timezone') : $timezone;
         $date = new Carbon($time, $timezone);
 
         return new Time($date->hour, $date->minute, $date->second, $timezone);    

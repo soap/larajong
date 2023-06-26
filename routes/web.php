@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('schedule', ScheduleController::class)->only('show');
+    Route::get('schedule/{schedule}/cal/{date?}', [ScheduleController::class,'calendar'])->name('schedule.calendar');
 });
 
 require __DIR__.'/auth.php';

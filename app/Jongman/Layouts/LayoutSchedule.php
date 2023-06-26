@@ -4,10 +4,16 @@ namespace App\Jongman\Layouts;
 
 use \Exception;
 use App\Enums\PeriodTypeEnum;
+use App\Helpers\DayOfWeek;
 use App\Jongman\Time;
+use App\Jongman\SchedulePeriod;
+use App\Jongman\SchedulePeriodList;
 use App\Jongman\Contracts\LayoutScheduleInterface;
 use App\Jongman\Layouts\LayoutPeriod;
+use Carbon\Exceptions\InvalidFormatException;
+use Carbon\Exceptions\InvalidTypeException;
 use Illuminate\Support\Carbon;
+use Symfony\Component\Translation\Exception\InvalidArgumentException;
 
 class LayoutSchedule implements LayoutScheduleInterface
 {
@@ -39,7 +45,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 	private $layoutTimezone;
 
 
-    public function __construct(private string $targetTimezone = null)
+    public function __construct(private string $targetTimezone = '')
     {
         if ($targetTimezone == null) {
             // Laravel 's application timezone configuration used
@@ -47,6 +53,11 @@ class LayoutSchedule implements LayoutScheduleInterface
         }
     }
     
+	public function useDailayLayouts()
+	{
+		return $this->usingDailyLayouts;
+	}
+
     /**
 	 * @param DayOfWeek|int|null $dayOfWeek
 	 * @throws Exception
@@ -99,13 +110,12 @@ class LayoutSchedule implements LayoutScheduleInterface
 	 * @param DayOfWeek|int|null $dayOfWeek
 	 * @return void
 	 */
-	public function appendBlockedPeriod(Time $startTime, Time $endTime, $label = null, $dayOfWeek = null)
+	public function appendBlockedPeriod(Time $startTime, Time $endTime, $label = '', $dayOfWeek = null)
 	{
 		$this->appendGenericPeriod($startTime, $endTime, PeriodTypeEnum::NONRESERVABLE, $label, $dayOfWeek);
 	}
 
-	protected function appendGenericPeriod(Time $startTime, Time $endTime, $periodType, $label = null,
-										   $dayOfWeek = null)
+	protected function appendGenericPeriod(Time $startTime, Time $endTime, $periodType, $label = '', $dayOfWeek = null)
 	{
 		$this->layoutTimezone = $startTime->timezone();
 		$layoutPeriod = new LayoutPeriod($startTime, $endTime, $periodType, $label);
@@ -132,7 +142,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 
 	/**
 	 * Get schedule layout after having completed appending periods 
-	 * @param Date $layoutDate	Layout for spefied date, you may use different layout for each day of week
+	 * @param Carbon $layoutDate	Layout for spefied date, you may use different layout for each day of week
 	 * @param bool $hideBlockedPeriods Get blocked period (unreservable) or not
 	 * @return array|SchedulePeriod[]
 	 */
@@ -151,12 +161,12 @@ class LayoutSchedule implements LayoutScheduleInterface
 			return $cachedValues;
 		}
 
-		$list = new RFSchedulePeriodList();
+		$list = new SchedulePeriodList();
 
 		$periods = $this->getPeriods($layoutDate);
 
 		$layoutTimezone = $periods[0]->timezone();
-		$workingDate = RFDate::Create($layoutDate->year(), $layoutDate->month(), $layoutDate->day(), 0, 0, 0,
+		$workingDate = Carbon::create($layoutDate->year(), $layoutDate->month(), $layoutDate->day(), 0, 0, 0,
 									$layoutTimezone);
 		$midnight = $layoutDate->getDate();
 
@@ -174,8 +184,8 @@ class LayoutSchedule implements LayoutScheduleInterface
 			$labelEnd = null;
 
 			// convert to target timezone
-			$periodStart = $workingDate->setTime($start)->toTimezone($targetTimezone);
-			$periodEnd = $workingDate->setTime($end, true)->toTimezone($targetTimezone);
+			$periodStart = $workingDate->setTimeFromTimeString($start)->setTimezone($targetTimezone);
+			$periodEnd = $workingDate->setTimeFromTimeString($end, true)->setTimezone($targetTimezone);
 
 			if ($periodEnd->lessThan($periodStart))
 			{
@@ -215,16 +225,26 @@ class LayoutSchedule implements LayoutScheduleInterface
 				$periodEnd = $periodEnd->addDays(1);
 			}
 
-			$list->Add($this->buildPeriod($periodType, $periodStart, $periodEnd, $label, $labelEnd));
+			$list->add($this->buildPeriod($periodType, $periodStart, $periodEnd, $label, $labelEnd));
 		}
 
-		$layout = $list->GetItems();
+		$layout = $list->getItems();
 		$this->sortItems($layout);
 		$this->addCached($layout, $workingDate);
 
 		return $layout;
 	}
 
+	/**
+	 * Get layout for specified date (if configured)
+	 * @param Carbon $requestedDate 
+	 * @param bool $hideBlockedPeriods 
+	 * @return mixed 
+	 * @throws Exception 
+	 * @throws InvalidFormatException 
+	 * @throws InvalidTypeException 
+	 * @throws InvalidArgumentException 
+	 */
 	private function getLayoutDaily(Carbon $requestedDate, $hideBlockedPeriods = false)
 	{
 		if ($requestedDate->timezone != $this->targetTimezone)
@@ -232,23 +252,23 @@ class LayoutSchedule implements LayoutScheduleInterface
 			throw new Exception('Target timezone and requested timezone do not match');
 		}
 
-		$cachedValues = $this->gtCachedValuesForDate($requestedDate);
+		$cachedValues = $this->getCachedValuesForDate($requestedDate);
 		if (!empty($cachedValues))
 		{
 			return $cachedValues;
 		}
 
 		// check cache
-		$baseDateInLayoutTz = Carbon::create($requestedDate->year(), $requestedDate->month(), $requestedDate->day(),
+		$baseDateInLayoutTz = Carbon::create($requestedDate->year, $requestedDate->month, $requestedDate->day,
 										   0, 0, 0, $this->layoutTimezone);
 
 
-		$list = new PeriodList();
-		$this->addDailyPeriods($requestedDate->weekday(), $baseDateInLayoutTz, $requestedDate, $list, $hideBlockedPeriods);
+		$list = new SchedulePeriodList();
+		$this->addDailyPeriods($requestedDate->weekday, $baseDateInLayoutTz, $requestedDate, $list, $hideBlockedPeriods);
 
 		if ($this->layoutTimezone != $this->targetTimezone)
 		{
-			$requestedDateInTargetTz = $requestedDate->toTimezone($this->layoutTimezone);
+			$requestedDateInTargetTz = $requestedDate->setTimezone($this->layoutTimezone);
 
 			$adjustment = 0;
 			if ($requestedDateInTargetTz->format('YmdH') < $requestedDate->format('YmdH'))
@@ -267,7 +287,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 			{
 				$adjustedDate = $requestedDate->addDays($adjustment);
 				$baseDateInLayoutTz = $baseDateInLayoutTz->addDays($adjustment);
-				$this->addDailyPeriods($adjustedDate->weekday(), $baseDateInLayoutTz, $requestedDate, $list);
+				$this->addDailyPeriods($adjustedDate->dayOfWeek, $baseDateInLayoutTz, $requestedDate, $list);
 			}
 		}
 		$layout = $list->getItems();
@@ -280,12 +300,12 @@ class LayoutSchedule implements LayoutScheduleInterface
 
 	/**
 	 * @param int $day
-	 * @param Date $baseDateInLayoutTz
-	 * @param Date $requestedDate
+	 * @param Carbon $baseDateInLayoutTz
+	 * @param Carbon $requestedDate
 	 * @param PeriodList $list
 	 * @param bool $hideBlockedPeriods
 	 */
-	private function addDailyPeriods($day, $baseDateInLayoutTz, $requestedDate, $list, $hideBlockedPeriods = false)
+	private function addDailyPeriods(Carbon $day, Carbon $baseDateInLayoutTz, $requestedDate, $list, $hideBlockedPeriods = false)
 	{
 		$periods = $this->_periods[$day];
 		/** @var $period LayoutPeriod */
@@ -295,10 +315,10 @@ class LayoutSchedule implements LayoutScheduleInterface
 			{
 				continue;
 			}
-			$begin = $baseDateInLayoutTz->SetTime($period->Start)->toTimezone($this->targetTimezone);
-			$end = $baseDateInLayoutTz->SetTime($period->End, true)->toTimezone($this->targetTimezone);
+			$begin = $baseDateInLayoutTz->setTimeFromString($period->start)->toTimezone($this->targetTimezone);
+			$end = $baseDateInLayoutTz->setTimeFromString($period->end)->toTimezone($this->targetTimezone);
 			// only add this period if it occurs on the requested date
-			if ($begin->dateEquals($requestedDate) || ($end->dateEquals($requestedDate) && !$end->isMidnight()))
+			if ($begin->isSameDay($requestedDate) || ($end->isSameDay($requestedDate) && !$end->isMidnight()))
 			{
 				$built = $this->buildPeriod($period->periodTypeClass(), $begin, $end, $period->label);
 				$list->add($built);
@@ -308,7 +328,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 
 	/**
 	 * @param array|SchedulePeriod[] $layout
-	 * @param Date $date
+	 * @param Carbon $date
 	 */
 	private function addCached($layout, $date)
 	{
@@ -317,7 +337,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 	}
 
 	/**
-	 * @param Date $date
+	 * @param Carbon $date
 	 * @return array|SchedulePeriod[]
 	 */
 	private function getCachedValuesForDate($date)
@@ -335,7 +355,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 		return !$start->dateEquals($layoutDate) && !$end->dateEquals($layoutDate);
 	}
 
-	private function buildPeriod($periodType, Carbon $start, Carbon $end, $label, $labelEnd = null)
+	private function buildPeriod(string $periodType, Carbon $start, Carbon $end, $label, $labelEnd = null)
 	{
 		return new $periodType($start, $end, $label, $labelEnd);
 	}
@@ -368,8 +388,8 @@ class LayoutSchedule implements LayoutScheduleInterface
 
 	/**
 	 * @param string $timezone
-	 * @param string $reservableSlots
-	 * @param string $blockedSlots
+	 * @param mixed $reservableSlots
+	 * @param mixed $blockedSlots
 	 * @return ScheduleLayout
 	 */
 	public static function parse($timezone, $reservableSlots, $blockedSlots)
@@ -390,14 +410,14 @@ class LayoutSchedule implements LayoutScheduleInterface
 	 */
 	public static function parseDaily($timezone, $reservableSlots, $blockedSlots)
 	{
-		if (count($reservableSlots) != RFDayOfWeek::NumberOfDays || count($blockedSlots) != RFDayOfWeek::NumberOfDays)
+		if (count($reservableSlots) != DayOfWeek::numberOfDays || count($blockedSlots) != DayOfWeek::numberOfDays)
 		{
-			throw new Exception(sprintf('LayoutParser ParseDaily missing slots. $reservableSlots=%s, $blockedSlots=%s',
+			throw new Exception(sprintf('LayoutParser parseDaily missing slots. $reservableSlots=%s, $blockedSlots=%s',
 										count($reservableSlots), count($blockedSlots)));
 		}
 		$parser = new LayoutParser($timezone);
 
-		foreach (RFDayOfWeek::Days() as $day)
+		foreach (DayOfWeek::days() as $day)
 		{
 			$parser->addReservable($reservableSlots[$day], $day);
 			$parser->addBlocked($blockedSlots[$day], $day);
@@ -407,29 +427,29 @@ class LayoutSchedule implements LayoutScheduleInterface
 	}
 
 	/**
-	 * @param Date $date
-	 * @return RFSchedulePeriod period which occurs at this datetime. Includes start time, excludes end time
+	 * @param Carbon $date
+	 * @return SchedulePeriod period which occurs at this datetime. Includes start time, excludes end time
 	 */
 	public function getPeriod(Carbon $date)
 	{
 		$timezone = $this->layoutTimezone;
-		$tempDate = $date->toTimezone($timezone);
+		$tempDate = $date->setTimezone($timezone);
 		$periods = $this->getPeriods($tempDate);
 
 		/** @var $period LayoutPeriod */
 		foreach ($periods as $period)
 		{
-			$start = Carbon::create($tempDate->year(), $tempDate->month(), $tempDate->day(), $period->start->hour(),
-								  $period->start->Minute(), 0, $timezone);
-			$end = Carbon::create($tempDate->year(), $tempDate->month(), $tempDate->day(), $period->end->hour(),
-								$period->end->minute(), 0, $timezone);
+			$start = Carbon::create($tempDate->year, $tempDate->month, $tempDate->day, $period->start->hour,
+								  $period->start->minute, 0, $timezone);
+			$end = Carbon::create($tempDate->year, $tempDate->month, $tempDate->day, $period->end->hour,
+								$period->end->minute, 0, $timezone);
 
 			if ($end->lessThan($start) || $end->isMidnight())
 			{
 				$end = $end->addDays(1);
 			}
-
-			if ($start->compare($date) <= 0 && $end->compare($date) > 0)
+			// $start is less than or equals date and $end is greather than
+			if ($start->le($date) && $end->gt($date))
 			{
 				return $this->buildPeriod($period->periodTypeClass(), $start, $end, $period->label);
 			}
@@ -446,7 +466,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 		return $this->usingDailyLayouts;
 	}
 
-	private function getPeriods(Carbon $layoutDate)
+	public function getPeriods(Carbon $layoutDate)
 	{
 		if ($this->usingDailyLayouts)
 		{
