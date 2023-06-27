@@ -3,9 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Jongman\Traits\CustomDate;
 
 class AppServiceProvider extends ServiceProvider
 {
+    use CustomDate;
+
     /**
      * Register any application services.
      *
@@ -13,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->registerCustomDateFunction();
     }
 
     /**

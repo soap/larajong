@@ -10,6 +10,7 @@ use App\Jongman\SchedulePeriod;
 use App\Jongman\SchedulePeriodList;
 use App\Jongman\Contracts\LayoutScheduleInterface;
 use App\Jongman\Layouts\LayoutPeriod;
+use App\Jongman\SchedulePeriodNone;
 use Carbon\Exceptions\InvalidFormatException;
 use Carbon\Exceptions\InvalidTypeException;
 use Illuminate\Support\Carbon;
@@ -137,7 +138,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 	 */
 	protected function spansMidnight(Carbon $start, Carbon $end)
 	{
-		return !$start->dateEquals($end) && !$end->isMidnight();
+		return !$start->isSameDay($end) && !$end->isMidnight();
 	}
 
 	/**
@@ -153,7 +154,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 			return $this->getLayoutDaily($layoutDate, $hideBlockedPeriods);
 		}
 		$targetTimezone = $this->targetTimezone;
-		$layoutDate = $layoutDate->toTimezone($targetTimezone);
+		$layoutDate = $layoutDate->setTimezone($targetTimezone);
 
 		$cachedValues = $this->getCachedValuesForDate($layoutDate);
 		if (!empty($cachedValues))
@@ -166,7 +167,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 		$periods = $this->getPeriods($layoutDate);
 
 		$layoutTimezone = $periods[0]->timezone();
-		$workingDate = Carbon::create($layoutDate->year(), $layoutDate->month(), $layoutDate->day(), 0, 0, 0,
+		$workingDate = Carbon::create($layoutDate->year, $layoutDate->month, $layoutDate->day, 0, 0, 0,
 									$layoutTimezone);
 		$midnight = $layoutDate->getDate();
 
@@ -192,13 +193,14 @@ class LayoutSchedule implements LayoutScheduleInterface
 				$periodEnd = $periodEnd->addDays(1);
 			}
 
-			$startTime = $periodStart->getTime();
-			$endTime = $periodEnd->getTime();
+			$startTime = Time::parse($periodStart->toTimeString(), $periodStart->timezone);
+			$endTime = Time::parse($periodEnd->toTimeString(), $periodEnd->timezone);
 
 			if ($this->bothDatesAreOff($periodStart, $periodEnd, $layoutDate))
 			{
-				$periodStart = $layoutDate->setTime($startTime);
-				$periodEnd = $layoutDate->setTime($endTime, true);
+				$periodStart = $layoutDate->setTimeFromTimeString($startTime);
+				// set end time
+				$periodEnd = $layoutDate->setTimeFromTimeString($endTime)->addDays(1); 
 			}
 
 			if ($this->spansMidnight($periodStart, $periodEnd, $layoutDate))
@@ -206,7 +208,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 				if ($periodStart->lessThan($midnight))
 				{
 					// add compensating period at end
-					$start = $layoutDate->setTime($startTime);
+					$start = $layoutDate->setTimeFromTimeString($startTime);
 					$end = $periodEnd->addDays(1);
 					$list->add($this->buildPeriod($periodType, $start, $end, $label, $labelEnd));
 				}
@@ -305,7 +307,7 @@ class LayoutSchedule implements LayoutScheduleInterface
 	 * @param PeriodList $list
 	 * @param bool $hideBlockedPeriods
 	 */
-	private function addDailyPeriods(Carbon $day, Carbon $baseDateInLayoutTz, $requestedDate, $list, $hideBlockedPeriods = false)
+	private function addDailyPeriods(int $day, Carbon $baseDateInLayoutTz, $requestedDate, $list, $hideBlockedPeriods = false)
 	{
 		$periods = $this->_periods[$day];
 		/** @var $period LayoutPeriod */
@@ -352,17 +354,26 @@ class LayoutSchedule implements LayoutScheduleInterface
 
 	private function bothDatesAreOff(Carbon $start, Carbon $end, Carbon $layoutDate)
 	{
-		return !$start->dateEquals($layoutDate) && !$end->dateEquals($layoutDate);
+		return !$start->isSameDay($layoutDate) && !$end->isSameDay($layoutDate);
 	}
 
 	private function buildPeriod(string $periodType, Carbon $start, Carbon $end, $label, $labelEnd = null)
 	{
-		return new $periodType($start, $end, $label, $labelEnd);
+		// How to do like this when Pint exists
+		// return new $periodType($start, $end, $label, $labelEnd);
+		if ($periodType == 'SchedulePeriodNone') {
+    		return new SchedulePeriodNone($start, $end, $label, $labelEnd);
+		}
+
+		if ($periodType == 'SchedulePeriod') {
+    		return new SchedulePeriod($start, $end, $label, $labelEnd);
+		}
+
 	}
 
 	protected function sortItems(&$items)
 	{
-		usort($items, array("LayoutSchedule", "sortBeginTimes"));
+		usort($items, array($this, "sortBeginTimes"));
 	}
 
 	public function timezone()

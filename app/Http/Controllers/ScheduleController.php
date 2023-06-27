@@ -3,46 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreScheduleRequest;
-use App\Http\Requests\UpdateScheduleRequest;
 use App\Jongman\Layouts\LayoutSchedule;
+use App\Jongman\Layouts\LayoutDaily;
 use App\Models\Schedule;
 use App\Models\TimeBlock;
 use App\Jongman\Time;
-use Carbon\CarbonInterval;
+use App\Jongman\DateRange;
+use App\Jongman\Reservations\ReservationListing;
 use Illuminate\Support\Carbon;
 
 class ScheduleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreScheduleRequest $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -67,6 +38,29 @@ class ScheduleController extends Controller
         $timezone = 'Asia/Bangkok';
 
         $date = empty($date) ? Carbon::now() : Carbon::parse($date, $timezone);
+
+        $displayDates = $this->getScheduleDates($schedule, $date, $timezone);
+
+        $dailyDateFormat = 'Y-m-d';
+        $layout = $this->getDailyLayout($schedule, $displayDates, $timezone);
+
+        return view('schedule.calendar', 
+            compact('schedule', 'displayDates', 'dailyDateFormat', 'layout')
+        );
+    }
+
+
+    protected function getDailyLayout($schedule, $displayDates, $timezone = null)
+    {
+        $scheduleLayout = $this->loadScheduleLayout($schedule, $timezone);
+        $reservationList = new ReservationListing($timezone);
+        $layout = new LayoutDaily($reservationList, $scheduleLayout);
+
+        return $layout;
+    }
+
+    protected function getScheduleDates(Schedule $schedule, Carbon $date, $timezone)
+    {
         $selectedDate = $date->setTimezone($timezone)->setTime(0, 0, 0);
         $selectedWeekday = $date->dayOfWeek;
         $scheduleLength = $schedule->days_visible;
@@ -83,43 +77,7 @@ class ScheduleController extends Controller
             $startDate = $selectedDate->add('day', $adjustedDays);
         }
 
-        $displayDates = CarbonInterval::days(1)
-            ->toPeriod($startDate, $startDate->add('days', $scheduleLength-1));
-        $dailyDateFormat = 'Y-m-d';
-        $layout = $this->loadScheduleLayout($schedule, $timezone);
-
-        return view('schedule.calendar', 
-            compact('schedule', 'displayDates', 'dailyDateFormat', 'layout')
-        );
-    }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Schedule $schedule)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateScheduleRequest $request, Schedule $schedule)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Schedule $schedule)
-    {
-        //
+        return new DateRange($startDate, $startDate->addDays($scheduleLength-1));
     }
 
     protected function loadScheduleLayout(Schedule $schedule, $timezone = '')

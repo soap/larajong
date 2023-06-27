@@ -6,10 +6,12 @@ use Illuminate\Support\Carbon;
 
 class SchedulePeriod
 {
+    protected $_id;
+    
     public function __construct(
         protected Carbon $begin,
         protected Carbon $end,
-        protected string $label = null)
+        protected string $label = '')
     {
     }
 
@@ -87,9 +89,9 @@ class SchedulePeriod
      */
     public function compare(SchedulePeriod $other)
     {
-        if ($this->begin->lt($other)) {
+        if ($this->begin->lt($other->begin)) {
             return -1;
-        } elseif ($this->begin->gt($other)) {
+        } elseif ($this->begin->gt($other->begin)) {
             return 1;
         }
 
@@ -105,4 +107,16 @@ class SchedulePeriod
     {
         return sprintf('Begin: %s End: %s Label: %s', $this->begin, $this->end, $this->label());
     }
+
+    /**
+	 * @return string
+	 */
+	public function id()
+	{
+		if (empty($this->_id))
+		{
+			$this->_id = uniqid();
+		}
+		return $this->_id;
+	}
 }

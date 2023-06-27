@@ -31,7 +31,7 @@ class LayoutDaily implements LayoutDailyInterface
 
    /**
     * Get display slots for resource specified by $resourceId on date specified by $date
-    * @see IDailyLayout::getLayout()
+    * @see DailyLayoutInterface::getLayout()
     */
    public function getLayout(Carbon $date, $resourceId)
    {
@@ -47,7 +47,7 @@ class LayoutDaily implements LayoutDailyInterface
    /**
     * check if the provided date is reservable
     * just check if the provided date is past or not
-    * @see IDailyLayout::isDateReservable()
+    * @see DailyLayoutInterface::isDateReservable()
     */
    public function isDateReservable(Carbon $date)
    {
@@ -82,7 +82,7 @@ class LayoutDaily implements LayoutDailyInterface
 
    /**
     * Get periods on the date for the current schedule
-    * @see IDailyLayout::getPeriods()
+    * @see DailyLayoutInterface::getPeriods()
     */
    public function getPeriods(Carbon $displayDate, $fitToHours = false)
    {
@@ -103,9 +103,9 @@ class LayoutDaily implements LayoutDailyInterface
            $span = 1;
            $currentPeriod = $periods[$i];
            $periodStart = $currentPeriod->beginDate();
-           $periodLength = $periodStart->getDifference($currentPeriod->endDate())->hours();
+           $periodLength = $periodStart->diffInHours($currentPeriod->endDate());
 
-           if (!$periods[$i]->isLabelled() && ($periodStart->minute() == 0 && $periodLength < 1))
+           if (!$periods[$i]->isLabeled() && ($periodStart->minute == 0 && $periodLength < 1))
            {
                $span = 0;
                $nextPeriodTime = $periodStart->addMinutes(60);

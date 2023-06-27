@@ -15,11 +15,12 @@
                     <div class="schedule_dates">
                         @include('schedule.calendar_legend')
                         @include('schedule.calendar_main', 
-                            compact('displayDates', 'dailyDateFormat')
+                            compact('displayDates', 'dailyDateFormat', 'schedule')
                             )    
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <?php dump($displayDates) ?>
 </x-app-layout>

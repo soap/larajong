@@ -1,6 +1,6 @@
 <div id="reservations">
     <!-- start of one day reservation table -->
-    @foreach($displayDates as $date)
+    @foreach($displayDates->dates() as $date)
     <table class="reservations">
         <tr class="">
             <td class="resdate">{{ $date->format($dailyDateFormat) }}</td>
@@ -8,17 +8,18 @@
             <td class="reslabel" colspan="{{ $period->span() }}">{{ $period->label($date)}}</td>
             @endforeach
         </tr>
-    @foreach($resources as $resource)
-    @php $slots = $layout->getLayout($date, $resource->id) @endphp
+        @foreach($schedule->resources as $resource)
+        @php $slots = $layout->getLayout($date, $resource->id) @endphp
         <tr class="slots">
             <td class="resourcename">
+                {{ $resource->name }}
             </td>
         
-        @foreach($slots as $slot)
+            @foreach($slots as $slot)
             <!-- call SlotFactory::display($slot, $slotRef, true, $this); -->
-        @endforeach
+            @endforeach
         </tr>
-    @endforeach
+        @endforeach
     </table>
     @endforeach
     <!-- end of one day reservation table -->
