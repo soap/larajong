@@ -3,10 +3,11 @@
 ## About LaraJong
 
 LaraJong is a web application with resource reservation features. "Jong (จอง)" in Thai is reserve, this application is based on one of my Joomla extension; Jongman.
+I have a plan to make part of the application as a package.
 
 
 ## Sponsors
-
+Any type of supports and sponsors are welcome.
 
 ## Contributing
 
