@@ -34,12 +34,12 @@ class ScheduleController extends Controller
     {
         $timezone = 'Asia/Bangkok';
 
-        $date = empty($date) ? Carbon::now() : Carbon::parse($date, $timezone);
-
+        $date = empty($date) ? Carbon::now($timezone) : Carbon::parse($date, $timezone);
+        
         $displayDates = $this->getScheduleDates($schedule, $date, $timezone);
 
         $dailyDateFormat = 'Y-m-d';
-        $layout = $this->getDailyLayout($schedule, $displayDates, $timezone);
+        $layout = null; // $this->getDailyLayout($schedule, $displayDates, $timezone);
 
         return view('schedule.calendar',
             compact('schedule', 'displayDates', 'dailyDateFormat', 'layout')
@@ -60,8 +60,8 @@ class ScheduleController extends Controller
         $selectedDate = $date->setTimezone($timezone)->setTime(0, 0, 0);
         $selectedWeekday = $date->dayOfWeek;
         $scheduleLength = $schedule->days_visible;
-
         $startDay = $schedule->weekday_start;
+        
         if ($startDay == 7) {
             $startDate = $selectedDate;
         } else {
@@ -69,11 +69,10 @@ class ScheduleController extends Controller
             if ($selectedWeekday < $startDay) {
                 $adjustedDays = $adjustedDays - 7;
             }
-
             $startDate = $selectedDate->add('day', $adjustedDays);
         }
-
-        return new DateRange($startDate, $startDate->addDays($scheduleLength - 1));
+        $endDate = $startDate->clone()->addDays($scheduleLength - 1);
+        return new DateRange($startDate, $endDate);
     }
 
     protected function loadScheduleLayout(Schedule $schedule, $timezone = '')

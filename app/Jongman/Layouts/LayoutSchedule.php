@@ -2,8 +2,8 @@
 
 namespace App\Jongman\Layouts;
 
-use App\Enums\PeriodTypeEnum;
-use App\Helpers\DayOfWeek;
+use App\Jongman\Helpers\PeriodTypeEnum;
+use App\Jongman\Helpers\DayOfWeek;
 use App\Jongman\Contracts\LayoutScheduleInterface;
 use App\Jongman\SchedulePeriod;
 use App\Jongman\SchedulePeriodList;
@@ -122,8 +122,8 @@ class LayoutSchedule implements LayoutScheduleInterface
     }
 
     /**
-     * @param  Date  $start
-     * @param  Date  $end
+     * @param  Carbon  $start
+     * @param  Carbon  $end
      * @return bool
      */
     protected function spansMidnight(Carbon $start, Carbon $end)
@@ -218,8 +218,8 @@ class LayoutSchedule implements LayoutScheduleInterface
     }
 
     /**
-     * Get layout for specified date (if configured)
-     *
+     * Get layout for specified date (if configured to use)
+     * @param  Carbon $requestedDate
      * @param  bool  $hideBlockedPeriods
      * @return mixed
      *

@@ -2,11 +2,12 @@
 
 namespace App\Jongman\Layouts;
 
+use Illuminate\Support\Carbon;
 use App\Jongman\Contracts\LayoutDailyInterface;
 use App\Jongman\Contracts\LayoutScheduleInterface;
 use App\Jongman\Contracts\ReservationListingInterface;
+use App\Jongman\ScheduleReservationList;
 use App\Jongman\SchedulePeriodSpanable;
-use Illuminate\Support\Carbon;
 
 class LayoutDaily implements LayoutDailyInterface
 {
@@ -58,6 +59,11 @@ class LayoutDaily implements LayoutDailyInterface
         return ! $date->getDate()->lessThan(Carbon::now()->getDate());
     }
 
+    /**
+     * 
+     * @param Carbon $displayDate 
+     * @return string[] 
+     */
     public function getLabels(Carbon $displayDate)
     {
         $hideBlocked = false;
@@ -82,10 +88,11 @@ class LayoutDaily implements LayoutDailyInterface
 
     /**
      * Get periods on the date for the current schedule
-     *
+     * @param Carbon $displayDate
+     * @param bool $fitToHours
      * @see DailyLayoutInterface::getPeriods()
      */
-    public function getPeriods(Carbon $displayDate, $fitToHours = false)
+    public function getPeriods(Carbon $displayDate, bool $fitToHours = false)
     {
         $hideBlocked = false;
 

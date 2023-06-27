@@ -7,7 +7,7 @@ use Illuminate\Support\Carbon;
 interface LayoutDailyInterface
 {
     /**
-     * @return array|IReservationSlot[]
+     * @return array|ReservationSlotInterface[]
      */
     public function getLayout(Carbon $date, int $resourceId);
 

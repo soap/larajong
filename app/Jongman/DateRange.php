@@ -22,8 +22,9 @@ class DateRange
     private $_timezone;
 
     /**
-     * @param  RFDate  $begin
-     * @param  RFDate  $end
+     * @param  Carbon  $begin
+     * @param  Carbon  $end
+     * @param string $timezone
      */
     public function __construct(Carbon $begin, Carbon $end, string $timezone = '')
     {
@@ -168,7 +169,7 @@ class DateRange
      */
     public function toUtc()
     {
-        return new DateRange($this->_begin->toUtc(), $this->_end->toUtc());
+        return new DateRange($this->_begin->setTimezone('UTC'), $this->_end->setTimezone('UTC'));
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Jongman\Contracts;
 
-interface IDateReservationListing extends ResourceReservationListingInterface
+interface DateReservationListingInterface extends ResourceReservationListingInterface
 {
     /**
      * @param  int  $resourceId

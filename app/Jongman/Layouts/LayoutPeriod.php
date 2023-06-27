@@ -2,7 +2,7 @@
 
 namespace App\Jongman\Layouts;
 
-use App\Enums\PeriodTypeEnum;
+use App\Jongman\Helpers\PeriodTypeEnum;
 use App\Jongman\Time;
 
 class LayoutPeriod

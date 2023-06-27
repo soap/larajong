@@ -15,7 +15,7 @@ interface LayoutScheduleInterface extends LayoutDailyScheduleInterface, LayoutTi
     /**
      * @abstract
      *
-     * @param  Date  $date
+     * @param  Carbon  $date
      * @return SchedulePeriod|null period which occurs at this datetime. Includes start time, excludes end time. null if no match is found
      */
     public function getPeriod(Carbon $date);
