@@ -17,7 +17,7 @@ class SchedulePeriodList
     public function add(SchedulePeriod $period)
     {
         if (! $period->isReservable()) {
-      
+
         }
 
         if ($this->alreadyAdded($period->beginDate(), $period->endDate())) {
@@ -28,10 +28,10 @@ class SchedulePeriodList
     }
 
     public function getItems()
-	{
-		return $this->items;
-	}
-    
+    {
+        return $this->items;
+    }
+
     private function alreadyAdded(Carbon $start, Carbon $end): bool
     {
         $startExists = false;

@@ -2,179 +2,173 @@
 
 namespace App\Jongman\Reservations;
 
-use App\Models\User;
 use App\Jongman\Contracts\ReservationSlotInterface;
 use App\Jongman\SchedulePeriod;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 
 class ReservationSlotEmpty implements ReservationSlotInterface
 {
-	/**
-	 * @var Carbon
-	 */
-	protected $_begin;
+    /**
+     * @var Carbon
+     */
+    protected $_begin;
 
-	/**
-	 * @var Carbon
-	 */
-	protected $_end;
+    /**
+     * @var Carbon
+     */
+    protected $_end;
 
-	/**
-	 * @var Carbon
-	 */
-	protected $_date;
+    /**
+     * @var Carbon
+     */
+    protected $_date;
 
-	/**
-	 * @var $_isReservable
-	 */
-	protected $_isReservable;
+    protected $_isReservable;
 
-	/**
-	 * @var int
-	 */
-	protected $_periodSpan;
+    /**
+     * @var int
+     */
+    protected $_periodSpan;
 
-	protected $_beginDisplayTime;
-	protected $_endDisplayTime;
+    protected $_beginDisplayTime;
 
-	protected $_beginSlotId;
-	protected $_endSlotId;
+    protected $_endDisplayTime;
 
-	public function __construct(SchedulePeriod $begin, SchedulePeriod $end, Carbon $displayDate, $isReservable)
-	{
-		$this->_begin = $begin->beginDate();
-		$this->_end = $end->endDate();
-		$this->_date = $displayDate;
-		$this->_isReservable = $isReservable;
+    protected $_beginSlotId;
 
-		$this->_beginDisplayTime = $this->_begin->getTime();
-		if (!$this->_begin->dateEquals($displayDate))
-		{
-			$this->_beginDisplayTime = $displayDate->getDate()->getTime();
-		}
+    protected $_endSlotId;
 
-		$this->_endDisplayTime = $this->_end->getTime();
-		if (!$this->_end->dateEquals($displayDate))
-		{
-			$this->_endDisplayTime = $displayDate->getDate()->getTime();
-		}
+    public function __construct(SchedulePeriod $begin, SchedulePeriod $end, Carbon $displayDate, $isReservable)
+    {
+        $this->_begin = $begin->beginDate();
+        $this->_end = $end->endDate();
+        $this->_date = $displayDate;
+        $this->_isReservable = $isReservable;
 
-		$this->_beginSlotId = $begin->Id();
-		$this->_endSlotId = $end->Id();
-	}
+        $this->_beginDisplayTime = $this->_begin->getTime();
+        if (! $this->_begin->dateEquals($displayDate)) {
+            $this->_beginDisplayTime = $displayDate->getDate()->getTime();
+        }
 
-	/**
-	 * @return Time
-	 */
-	public function begin()
-	{
-		return $this->_beginDisplayTime;
-	}
+        $this->_endDisplayTime = $this->_end->getTime();
+        if (! $this->_end->dateEquals($displayDate)) {
+            $this->_endDisplayTime = $displayDate->getDate()->getTime();
+        }
 
-	/**
-	 * @return Carbon
-	 */
-	public function beginDate()
-	{
-		return $this->_begin;
-	}
+        $this->_beginSlotId = $begin->Id();
+        $this->_endSlotId = $end->Id();
+    }
 
-	/**
-	 * @return Time
-	 */
-	public function end()
-	{
-		return $this->_endDisplayTime;
-	}
+    /**
+     * @return Time
+     */
+    public function begin()
+    {
+        return $this->_beginDisplayTime;
+    }
 
-	/**
-	 * @return Date
-	 */
-	public function endDate()
-	{
-		return $this->_end;
-	}
+    /**
+     * @return Carbon
+     */
+    public function beginDate()
+    {
+        return $this->_begin;
+    }
 
-	/**
-	 * @return Carbon
-	 */
-	public function date()
-	{
-		return $this->_date;
-	}
+    /**
+     * @return Time
+     */
+    public function end()
+    {
+        return $this->_endDisplayTime;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function periodSpan()
-	{
-		return 1;
-	}
+    /**
+     * @return Date
+     */
+    public function endDate()
+    {
+        return $this->_end;
+    }
 
-	public function label()
-	{
-		return '';
-	}
+    /**
+     * @return Carbon
+     */
+    public function date()
+    {
+        return $this->_date;
+    }
 
-	public function isReservable()
-	{
-		return $this->_isReservable;
-	}
+    /**
+     * @return int
+     */
+    public function periodSpan()
+    {
+        return 1;
+    }
 
-	public function isReserved()
-	{
-		return false;
-	}
+    public function label()
+    {
+        return '';
+    }
 
-	public function isPending()
-	{
-		return false;
-	}
+    public function isReservable()
+    {
+        return $this->_isReservable;
+    }
 
-	public function isPastDate(Carbon $date)
-	{
-		$constraint = '';
+    public function isReserved()
+    {
+        return false;
+    }
 
-		if (empty($constraint))
-		{
-			$constraint = 'default';
-		}
+    public function isPending()
+    {
+        return false;
+    }
 
-		if ($constraint == 'none')
-		{
-			return false;
-		}
+    public function isPastDate(Carbon $date)
+    {
+        $constraint = '';
 
-		if ($constraint == 'current')
-		{
-			return $this->_date->setTime($this->end(), true)->lessThan($date);
-		}
+        if (empty($constraint)) {
+            $constraint = 'default';
+        }
 
-		return $this->_date->setTimeFromTimeString($this->begin())->lessThan($date);
-	}
+        if ($constraint == 'none') {
+            return false;
+        }
 
-	public function toTimezone($timezone)
-	{
-		return new ReservationSlotEmpty($this->beginDate()->toTimezone($timezone), $this->end()->toTimezone($timezone), $this->date(), $this->_isReservable);
-	}
+        if ($constraint == 'current') {
+            return $this->_date->setTime($this->end(), true)->lessThan($date);
+        }
 
-	public function isOwnedBy(User $user)
-	{
-		return false;
-	}
+        return $this->_date->setTimeFromTimeString($this->begin())->lessThan($date);
+    }
 
-	public function isParticipating(User $user)
-	{
-		return false;
-	}
+    public function toTimezone($timezone)
+    {
+        return new ReservationSlotEmpty($this->beginDate()->toTimezone($timezone), $this->end()->toTimezone($timezone), $this->date(), $this->_isReservable);
+    }
 
-	public function beginSlotId()
-	{
-		return $this->_beginSlotId;
-	}
+    public function isOwnedBy(User $user)
+    {
+        return false;
+    }
 
-	public function endSlotId()
-	{
-		return $this->_endSlotId;
-	}
+    public function isParticipating(User $user)
+    {
+        return false;
+    }
+
+    public function beginSlotId()
+    {
+        return $this->_beginSlotId;
+    }
+
+    public function endSlotId()
+    {
+        return $this->_endSlotId;
+    }
 }

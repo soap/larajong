@@ -4,5 +4,4 @@ namespace App\Jongman\Reservations;
 
 class BlackoutListItem
 {
-
 }

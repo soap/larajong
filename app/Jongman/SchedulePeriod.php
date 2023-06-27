@@ -7,7 +7,7 @@ use Illuminate\Support\Carbon;
 class SchedulePeriod
 {
     protected $_id;
-    
+
     public function __construct(
         protected Carbon $begin,
         protected Carbon $end,
@@ -109,14 +109,14 @@ class SchedulePeriod
     }
 
     /**
-	 * @return string
-	 */
-	public function id()
-	{
-		if (empty($this->_id))
-		{
-			$this->_id = uniqid();
-		}
-		return $this->_id;
-	}
+     * @return string
+     */
+    public function id()
+    {
+        if (empty($this->_id)) {
+            $this->_id = uniqid();
+        }
+
+        return $this->_id;
+    }
 }

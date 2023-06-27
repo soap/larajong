@@ -4,30 +4,25 @@ namespace App\Jongman\Contracts;
 
 use Illuminate\Support\Carbon;
 
-interface LayoutDailyInterface {
-    
+interface LayoutDailyInterface
+{
     /**
-	 * @param Carbon $date
-	 * @param int $resourceId
-	 * @return array|IReservationSlot[]
-	 */
-	function getLayout(Carbon $date, int $resourceId);
+     * @return array|IReservationSlot[]
+     */
+    public function getLayout(Carbon $date, int $resourceId);
 
-	/**
-	 * @param Carbon $date
-	 * @return bool
-	 */
-	function isDateReservable(Carbon $date);
+    /**
+     * @return bool
+     */
+    public function isDateReservable(Carbon $date);
 
-	/**
-	 * @param Carbon $displayDate
-	 * @return string[]
-	 */
-	function getLabels(Carbon $displayDate);
+    /**
+     * @return string[]
+     */
+    public function getLabels(Carbon $displayDate);
 
-	/**
-	 * @param Carbon $displayDate
-	 * @return mixed
-	 */
-	function getPeriods(Carbon $displayDate);
+    /**
+     * @return mixed
+     */
+    public function getPeriods(Carbon $displayDate);
 }

@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Jongman\Layouts\LayoutSchedule;
+use App\Jongman\DateRange;
 use App\Jongman\Layouts\LayoutDaily;
+use App\Jongman\Layouts\LayoutSchedule;
+use App\Jongman\Reservations\ReservationListing;
+use App\Jongman\Time;
 use App\Models\Schedule;
 use App\Models\TimeBlock;
-use App\Jongman\Time;
-use App\Jongman\DateRange;
-use App\Jongman\Reservations\ReservationListing;
 use Illuminate\Support\Carbon;
 
 class ScheduleController extends Controller
 {
-
     /**
      * Display the specified resource.
      *
@@ -22,11 +20,10 @@ class ScheduleController extends Controller
      */
     public function show(Schedule $schedule)
     {
-        return view('schedule.calendar', 
+        return view('schedule.calendar',
             compact('schedule')
         );
     }
-
 
     /**
      * Display the specified schedule in custom calendar mode.
@@ -44,11 +41,10 @@ class ScheduleController extends Controller
         $dailyDateFormat = 'Y-m-d';
         $layout = $this->getDailyLayout($schedule, $displayDates, $timezone);
 
-        return view('schedule.calendar', 
+        return view('schedule.calendar',
             compact('schedule', 'displayDates', 'dailyDateFormat', 'layout')
         );
     }
-
 
     protected function getDailyLayout($schedule, $displayDates, $timezone = null)
     {
@@ -66,9 +62,9 @@ class ScheduleController extends Controller
         $scheduleLength = $schedule->days_visible;
 
         $startDay = $schedule->weekday_start;
-        if ($startDay == 7){
+        if ($startDay == 7) {
             $startDate = $selectedDate;
-        }else{
+        } else {
             $adjustedDays = ($startDay - $selectedWeekday);
             if ($selectedWeekday < $startDay) {
                 $adjustedDays = $adjustedDays - 7;
@@ -77,7 +73,7 @@ class ScheduleController extends Controller
             $startDate = $selectedDate->add('day', $adjustedDays);
         }
 
-        return new DateRange($startDate, $startDate->addDays($scheduleLength-1));
+        return new DateRange($startDate, $startDate->addDays($scheduleLength - 1));
     }
 
     protected function loadScheduleLayout(Schedule $schedule, $timezone = '')
@@ -93,12 +89,12 @@ class ScheduleController extends Controller
             if ($period->availability_code == 1) {
                 $layout->appendPeriod(
                     Time::parse($period->start_time), Time::parse($period->end_time),
-                    (string)$period->label, $period->day_of_week
+                    (string) $period->label, $period->day_of_week
                 );
-            }else{
+            } else {
                 $layout->appendBlockedPeriod(
                     Time::parse($period->start_time), Time::parse($period->end_time),
-                    (string)$period->label, $period->day_of_week
+                    (string) $period->label, $period->day_of_week
                 );
             }
         }

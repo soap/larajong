@@ -2,18 +2,18 @@
 
 namespace App\Jongman\Layouts;
 
-use App\Jongman\Time;
 use App\Enums\PeriodTypeEnum;
+use App\Jongman\Time;
 
 class LayoutPeriod
 {
     public function __construct(public Time $start, public Time $end, public $periodType = PeriodTypeEnum::RESERVABLE, public string $label = '')
-	{
-	}
-    
+    {
+    }
+
     public function periodTypeClass()
     {
-        if ($this->periodType == PeriodTypeEnum::RESERVABLE){
+        if ($this->periodType == PeriodTypeEnum::RESERVABLE) {
             return 'SchedulePeriod';
         }
 
@@ -27,7 +27,7 @@ class LayoutPeriod
 
     public function isLabeled()
     {
-        return !empty($this->label);
+        return ! empty($this->label);
     }
 
     public function timezone()

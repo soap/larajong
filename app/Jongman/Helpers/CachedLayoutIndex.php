@@ -6,43 +6,49 @@ use Illuminate\Support\Carbon;
 
 class CachedLayoutIndex
 {
-	private $_firstLayoutTime;
-	private $_layoutByStartTime = array();
-	private $_layoutIndexByEndTime = array();
+    private $_firstLayoutTime;
 
-	/**
-	 * @param SchedulePeriod[] $schedulePeriods
-	 * @param Carbon $startDate
-	 * @param Carbon $endDate
-	 */
-	public function __construct($schedulePeriods, Carbon $startDate, Carbon $endDate)
-	{
-		$this->_firstLayoutTime = $endDate;
+    private $_layoutByStartTime = [];
 
-		for ($i = 0; $i < count($schedulePeriods); $i++)
-		{
-			/** @var Carbon $itemBegin */
-			$itemBegin = $schedulePeriods[$i]->BeginDate();
-			if ($itemBegin->LessThan($this->_firstLayoutTime))
-			{
-				$this->_firstLayoutTime = $schedulePeriods[$i]->BeginDate();
-			}
+    private $_layoutIndexByEndTime = [];
 
-			/** @var Carbon $endTime */
-			$endTime = $schedulePeriods[$i]->endDate();
-			if (!$schedulePeriods[$i]->endDate()->dateEquals($startDate))
-			{
-				$endTime = $endDate;
-			}
+    /**
+     * @param  SchedulePeriod[]  $schedulePeriods
+     */
+    public function __construct($schedulePeriods, Carbon $startDate, Carbon $endDate)
+    {
+        $this->_firstLayoutTime = $endDate;
 
-			$this->_layoutByStartTime[$itemBegin->timestamp] = $schedulePeriods[$i];
-			$this->_layoutIndexByEndTime[$endTime->timestamp] = $i;
-		}
-	}
+        for ($i = 0; $i < count($schedulePeriods); $i++) {
+            /** @var Carbon $itemBegin */
+            $itemBegin = $schedulePeriods[$i]->BeginDate();
+            if ($itemBegin->LessThan($this->_firstLayoutTime)) {
+                $this->_firstLayoutTime = $schedulePeriods[$i]->BeginDate();
+            }
 
-	public function getFirstLayoutTime() { return $this->_firstLayoutTime; }
+            /** @var Carbon $endTime */
+            $endTime = $schedulePeriods[$i]->endDate();
+            if (! $schedulePeriods[$i]->endDate()->dateEquals($startDate)) {
+                $endTime = $endDate;
+            }
 
-	public function layoutByStartTime() { return $this->_layoutByStartTime; }
+            $this->_layoutByStartTime[$itemBegin->timestamp] = $schedulePeriods[$i];
+            $this->_layoutIndexByEndTime[$endTime->timestamp] = $i;
+        }
+    }
 
-	public function layoutIndexByEndTime() { return $this->_layoutIndexByEndTime; }
+    public function getFirstLayoutTime()
+    {
+        return $this->_firstLayoutTime;
+    }
+
+    public function layoutByStartTime()
+    {
+        return $this->_layoutByStartTime;
+    }
+
+    public function layoutIndexByEndTime()
+    {
+        return $this->_layoutIndexByEndTime;
+    }
 }

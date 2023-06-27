@@ -4,8 +4,8 @@ namespace App\Jongman\Contracts;
 
 interface ScheduleReservationListInterface
 {
-	/**
-	 * @return array[int] ReservationSlotInterface
-	 */
-	function buildSlots();
+    /**
+     * @return array[int] ReservationSlotInterface
+     */
+    public function buildSlots();
 }

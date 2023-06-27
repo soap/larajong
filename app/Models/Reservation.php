@@ -11,6 +11,6 @@ class Reservation extends Model
 
     public function resources()
     {
-        
+
     }
 }
