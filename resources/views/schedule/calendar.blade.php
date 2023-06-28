@@ -14,9 +14,9 @@
                         <a href="#" id="calendar_toggle"><i class="fa fa-calendar" aria-hidden="true"></i></a>
                     </div>
                     <div id="schedule_dates" class="flex justify-center">
-                        <a href="{{-- navigation->previousLink --}}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
+                        <a href="{{ $navigationLinks->previousLink }}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
                         {{ $displayDates->getBegin()->format('d/m/Y') }} - {{ $displayDates->getEnd()->format('d/m/Y') }}
-                        <a href="{{-- navigation->nextLink --}} "><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                        <a href="{{ $navigationLinks->nextLink }} "><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                     </div>
                     <div id="datepicker" style="display:none"></div>
                     <div id="schedule_calendar">

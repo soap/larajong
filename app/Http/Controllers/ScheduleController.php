@@ -10,6 +10,7 @@ use App\Jongman\Time;
 use App\Models\Schedule;
 use App\Models\TimeBlock;
 use Illuminate\Support\Carbon;
+use stdClass;
 
 class ScheduleController extends Controller
 {
@@ -37,12 +38,13 @@ class ScheduleController extends Controller
         $date = empty($date) ? Carbon::now($timezone) : Carbon::parse($date, $timezone);
         
         $displayDates = $this->getScheduleDates($schedule, $date, $timezone);
-
+        $navigationLinks = $this->getNavigationLinks($schedule, $displayDates);
         $dailyDateFormat = 'Y-m-d';
         $layout = null; // $this->getDailyLayout($schedule, $displayDates, $timezone);
 
         return view('schedule.calendar',
-            compact('schedule', 'displayDates', 'dailyDateFormat', 'layout')
+            compact('schedule', 'displayDates', 'navigationLinks',
+                'dailyDateFormat', 'layout')
         );
     }
 
@@ -99,5 +101,37 @@ class ScheduleController extends Controller
         }
 
         return $layout;
+    }
+
+
+    protected function getNavigationLinks($schedule, DateRange $displayDates)
+    {
+        $startDate = $displayDates->getBegin()->clone();
+        $endDate = $displayDates->getEnd()->clone();
+
+        $startDay = $schedule->weekday_start;
+    	$scheduleLength = $schedule->days_visible;
+    	if ($startDay == 7)
+    	{
+    		$adjustment = $scheduleLength;
+    		$prevAdjustment = $scheduleLength;
+    	}else{
+    		$adjustment = max($scheduleLength, 7);
+            // ie, if 10, we only want to go back 7 days so there is overlap
+    		$prevAdjustment = 7 * floor($adjustment / 7); 
+    	}
+
+        $obj = new stdClass();
+        $obj->previousLink = route('schedule.calendar', [
+            'schedule' => $schedule->id,
+            'date' => $startDate->addDays(-$prevAdjustment)->format('Y-m-d')
+        ]);
+
+        $obj->nextLink = route('schedule.calendar', [
+            'schedule' => $schedule->id,
+            'date' => $endDate->addDays($adjustment)->format('Y-m-d')
+        ]);
+
+        return $obj;
     }
 }
