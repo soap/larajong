@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Jongman;
+namespace App\Jongman\Schedules;
 
 use App\Jongman\Contracts\LayoutScheduleInterface;
 use App\Jongman\Contracts\ScheduleReservationListInterface;
 use App\Jongman\Helpers\LayoutIndexCache;
 use App\Jongman\Reservations\ReservationListItem;
 use App\Jongman\Reservations\ReservationSlotEmpty;
+use App\Jongman\Time;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 

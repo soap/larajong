@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jongman;
+namespace App\Jongman\Schedules;
 
 class SchedulePeriodSpanable extends SchedulePeriod
 {

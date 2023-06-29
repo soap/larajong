@@ -94,7 +94,7 @@ class DateRange
      */
     public function occursOn(Carbon $date)
     {
-        $timezone = $date->timezone();
+        $timezone = $date->timezone;
         $compare = $this;
 
         if ($timezone != $this->_timezone) {

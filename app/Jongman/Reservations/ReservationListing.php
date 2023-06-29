@@ -35,7 +35,7 @@ class ReservationListing implements MutableReservationListingInterface
     /**
      * @param  string  $targetTimezone
      */
-    public function __construct($targetTimezone)
+    public function __construct(string $targetTimezone)
     {
         $this->timezone = $targetTimezone;
     }

@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 class ReservationListItem
 {
     /**
-     * @var IReservedItemView
+     * @var ReservedItemViewInterface
      */
     protected $item;
 
@@ -41,7 +41,7 @@ class ReservationListItem
 
     /**
      * @param  int  $span
-     * @return IReservationSlot
+     * @return ReservationSlotInterface
      */
     public function buildSlot(SchedulePeriod $start, SchedulePeriod $end, Carbon $displayDate, $span)
     {

@@ -8,8 +8,10 @@ use App\Jongman\Layouts\LayoutSchedule;
 use App\Jongman\Reservations\ReservationListing;
 use App\Jongman\Time;
 use App\Models\Schedule;
-use App\Models\TimeBlock;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Carbon;
+use Psr\Container\NotFoundExceptionInterface;
+use Psr\Container\ContainerExceptionInterface;
 use stdClass;
 
 class ScheduleController extends Controller
@@ -33,14 +35,14 @@ class ScheduleController extends Controller
      */
     public function calendar(Schedule $schedule, $date = null)
     {
-        $timezone = 'Asia/Bangkok';
+        $timezone = 'Asia/Bangkok'; // Should be user's timezone
 
         $date = empty($date) ? Carbon::now($timezone) : Carbon::parse($date, $timezone);
         
         $displayDates = $this->getScheduleDates($schedule, $date, $timezone);
         $navigationLinks = $this->getNavigationLinks($schedule, $displayDates);
         $dailyDateFormat = 'Y-m-d';
-        $layout = null; // $this->getDailyLayout($schedule, $displayDates, $timezone);
+        $layout =null;// $this->getDailyLayout($schedule, $displayDates, $timezone);
 
         return view('schedule.calendar',
             compact('schedule', 'displayDates', 'navigationLinks',
@@ -50,8 +52,11 @@ class ScheduleController extends Controller
 
     protected function getDailyLayout($schedule, $displayDates, $timezone = null)
     {
+        // load schedule layout from database (slots or blocks for schedule)
         $scheduleLayout = $this->loadScheduleLayout($schedule, $timezone);
+        
         $reservationList = new ReservationListing($timezone);
+        // empty reservationList for now 
         $layout = new LayoutDaily($reservationList, $scheduleLayout);
 
         return $layout;
@@ -74,12 +79,22 @@ class ScheduleController extends Controller
             $startDate = $selectedDate->add('day', $adjustedDays);
         }
         $endDate = $startDate->clone()->addDays($scheduleLength - 1);
+
         return new DateRange($startDate, $endDate);
     }
 
+    /**
+     * @todo this method should be in model?
+     * @param Schedule $schedule 
+     * @param string $timezone 
+     * @return LayoutSchedule 
+     * @throws BindingResolutionException 
+     * @throws NotFoundExceptionInterface 
+     * @throws ContainerExceptionInterface 
+     */
     protected function loadScheduleLayout(Schedule $schedule, $timezone = '')
     {
-        $blocks = TimeBlock::where('schedule_layout_id', $schedule->schedule_layout_id)->get();
+        $blocks = $schedule->timeBlocks;
         if (empty($timezone)) {
             $timezone = $schedule->timezone;
         }
@@ -102,7 +117,6 @@ class ScheduleController extends Controller
 
         return $layout;
     }
-
 
     protected function getNavigationLinks($schedule, DateRange $displayDates)
     {
