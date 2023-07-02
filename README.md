@@ -6,7 +6,7 @@ LavaJong is a web application with resource reservation features. "Jong (จอ�
 
 
 ## Sponsors
-
+Any type of supports and sponsors are welcome.
 
 ## Contributing
 
