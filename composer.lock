@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c281c88690fb48e5b78103b940d1c78",
+    "content-hash": "abdeee1a2748bdea526e7eb82c738397",
     "packages": [
         {
             "name": "brick/math",
@@ -973,6 +973,66 @@
                 }
             ],
             "time": "2021-10-07T12:57:01+00:00"
+        },
+        {
+            "name": "jackiedo/timezonelist",
+            "version": "5.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JackieDo/Timezone-List.git",
+                "reference": "f1c64d0159b4401a78c7ab536505175238c38837"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JackieDo/Timezone-List/zipball/f1c64d0159b4401a78c7ab536505175238c38837",
+                "reference": "f1c64d0159b4401a78c7ab536505175238c38837",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                },
+                "laravel": {
+                    "aliases": {
+                        "Timezonelist": "Jackiedo\\Timezonelist\\Facades\\Timezonelist"
+                    },
+                    "providers": [
+                        "Jackiedo\\Timezonelist\\TimezonelistServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jackiedo\\Timezonelist\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jackie Do",
+                    "email": "anhvudo@gmail.com"
+                }
+            ],
+            "description": "A small package use to create a timezone list box in Laravel",
+            "keywords": [
+                "laravel",
+                "timezone",
+                "timezonelist",
+                "timezones"
+            ],
+            "support": {
+                "issues": "https://github.com/JackieDo/Timezone-List/issues",
+                "source": "https://github.com/JackieDo/Timezone-List/tree/5.1.3"
+            },
+            "time": "2022-03-17T15:10:43+00:00"
         },
         {
             "name": "laravel/breeze",

@@ -3,6 +3,7 @@
 namespace App\Jongman\Layouts;
 
 use App\Jongman\Contracts\LayoutScheduleInterface;
+use Illuminate\Support\Carbon;
 
 class LayoutReservation extends LayoutSchedule implements LayoutScheduleInterface
 {
@@ -11,7 +12,7 @@ class LayoutReservation extends LayoutSchedule implements LayoutScheduleInterfac
      * @param  Carbon  $end
      * @return bool
      */
-	protected function spansMidnight(Carbon $start, Carbon $end)
+	protected function spansMidnight(Carbon $start, Carbon $end): bool
 	{
 		return false;
 	}

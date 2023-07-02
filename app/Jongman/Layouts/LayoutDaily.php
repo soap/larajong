@@ -6,9 +6,13 @@ use Illuminate\Support\Carbon;
 use App\Jongman\Contracts\LayoutDailyInterface;
 use App\Jongman\Contracts\LayoutScheduleInterface;
 use App\Jongman\Contracts\ReservationListingInterface;
-use App\Jongman\ScheduleReservationList;
-use App\Jongman\SchedulePeriodSpanable;
+use App\Jongman\Schedules\ScheduleReservationList;
+use App\Jongman\Schedules\SchedulePeriodSpanable;
 
+/**
+ * Use ScheduleLayout and ReservationListing to create DailyLayout 
+ * @package App\Jongman\Layouts
+ */
 class LayoutDaily implements LayoutDailyInterface
 {
     /**
@@ -88,6 +92,9 @@ class LayoutDaily implements LayoutDailyInterface
 
     /**
      * Get periods on the date for the current schedule
+     * This periods display on the topmost with date in left hand side
+     * 2023-06-30 |8:00   |9:00   | .... <== this data
+     * Room 1     |   |   |   |   | .... 
      * @param Carbon $displayDate
      * @param bool $fitToHours
      * @see DailyLayoutInterface::getPeriods()

@@ -16,7 +16,7 @@ class LayoutIndexCache
      */
     public static function contains(Carbon $date)
     {
-        return array_key_exists($date->timestamp(), self::$_cache);
+        return array_key_exists($date->timestamp, self::$_cache);
     }
 
     /**

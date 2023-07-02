@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Jongman\DateRange;
+use App\Jongman\Factories\LayoutScheduleFactory;
 use App\Jongman\Layouts\LayoutDaily;
 use App\Jongman\Layouts\LayoutSchedule;
+use App\Jongman\Repositories\ScheduleRepository;
 use App\Jongman\Reservations\ReservationListing;
 use App\Jongman\Time;
 use App\Models\Schedule;
@@ -16,6 +18,10 @@ use stdClass;
 
 class ScheduleController extends Controller
 {
+    public function __construct(private ScheduleRepository $repository)
+    {
+        
+    }
     /**
      * Display the specified resource.
      *
@@ -33,17 +39,23 @@ class ScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function calendar(Schedule $schedule, $date = null)
+    public function calendar(Schedule $scheduleModel, $date = null)
     {
-        $timezone = 'Asia/Bangkok'; // Should be user's timezone
+        $timezone = auth()->user()->timezone ?: config('app.timezone');
 
         $date = empty($date) ? Carbon::now($timezone) : Carbon::parse($date, $timezone);
         
-        $displayDates = $this->getScheduleDates($schedule, $date, $timezone);
-        $navigationLinks = $this->getNavigationLinks($schedule, $displayDates);
+        $displayDates = $this->getScheduleDates($scheduleModel, $date, $timezone);
+        $navigationLinks = $this->getNavigationLinks($scheduleModel, $displayDates);
         $dailyDateFormat = 'Y-m-d';
-        $layout =null;// $this->getDailyLayout($schedule, $displayDates, $timezone);
 
+        //The repository returns true domain model (not ORM of Laravel)
+        $scheduleLayout = $this->repository->getLayout(
+                $scheduleModel->id, 
+                new LayoutScheduleFactory($timezone)
+            );
+        $reservationListing = $this->reservationService->getReservation($displayDates, $scheduleModel->id, $timezone);
+        $layout = $this->dailyLayoutFactory->create($reservationListing, $scheduleLayout);
         return view('schedule.calendar',
             compact('schedule', 'displayDates', 'navigationLinks',
                 'dailyDateFormat', 'layout')

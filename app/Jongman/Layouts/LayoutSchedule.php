@@ -2,6 +2,8 @@
 
 namespace App\Jongman\Layouts;
 
+use App\Jongman\Contracts\LayoutCreationInterface;
+use Exception;
 use App\Jongman\Helpers\PeriodTypeEnum;
 use App\Jongman\Helpers\DayOfWeek;
 use App\Jongman\Contracts\LayoutScheduleInterface;
@@ -11,11 +13,10 @@ use App\Jongman\Schedules\SchedulePeriodNone;
 use App\Jongman\Time;
 use Carbon\Exceptions\InvalidFormatException;
 use Carbon\Exceptions\InvalidTypeException;
-use Exception;
 use Illuminate\Support\Carbon;
 use Symfony\Component\Translation\Exception\InvalidArgumentException;
 
-class LayoutSchedule implements LayoutScheduleInterface
+class LayoutSchedule implements LayoutScheduleInterface, LayoutCreationInterface
 {
     /**
      * @var array|LayoutPeriod[]
@@ -126,7 +127,7 @@ class LayoutSchedule implements LayoutScheduleInterface
      * @param  Carbon  $end
      * @return bool
      */
-    protected function spansMidnight(Carbon $start, Carbon $end)
+    protected function spansMidnight(Carbon $start, Carbon $end): bool
     {
         return ! $start->isSameDay($end) && ! $end->isMidnight();
     }

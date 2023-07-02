@@ -21,14 +21,14 @@ class CachedLayoutIndex
 
         for ($i = 0; $i < count($schedulePeriods); $i++) {
             /** @var Carbon $itemBegin */
-            $itemBegin = $schedulePeriods[$i]->BeginDate();
+            $itemBegin = $schedulePeriods[$i]->beginDate();
             if ($itemBegin->LessThan($this->_firstLayoutTime)) {
-                $this->_firstLayoutTime = $schedulePeriods[$i]->BeginDate();
+                $this->_firstLayoutTime = $schedulePeriods[$i]->beginDate();
             }
 
             /** @var Carbon $endTime */
             $endTime = $schedulePeriods[$i]->endDate();
-            if (! $schedulePeriods[$i]->endDate()->dateEquals($startDate)) {
+            if (! $schedulePeriods[$i]->endDate()->eq($startDate)) {
                 $endTime = $endDate;
             }
 

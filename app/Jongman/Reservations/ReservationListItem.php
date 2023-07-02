@@ -3,7 +3,7 @@
 namespace App\Jongman\Reservations;
 
 use App\Jongman\Contracts\ReservedItemInterface;
-use App\Jongman\SchedulePeriod;
+use App\Jongman\Schedules\SchedulePeriod;
 use Illuminate\Support\Carbon;
 
 class ReservationListItem

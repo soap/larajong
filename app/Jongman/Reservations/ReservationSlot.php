@@ -4,7 +4,7 @@ namespace App\Jongman\Reservations;
 
 use App\Jongman\Contracts\ReservationSlotInterface;
 use App\Jongman\Factories\SlotLabelFactory;
-use App\Jongman\SchedulePeriod;
+use App\Jongman\Schedules\SchedulePeriod;
 use Illuminate\Support\Carbon;
 
 class ReservationSlot implements ReservationSlotInterface
