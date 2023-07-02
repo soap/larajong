@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class ScheduleLayout extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title', 'is_default', 'timezone', 'note',
+    ];
+
+    public function timeBlocks()
+    {
+        return $this->hasMany(TimeBlock::class);
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\TimeBlock;
 use App\Http\Requests\StoreTimeBlockRequest;
 use App\Http\Requests\UpdateTimeBlockRequest;
+use App\Models\TimeBlock;
 
 class TimeBlockController extends Controller
 {
@@ -31,7 +31,6 @@ class TimeBlockController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTimeBlockRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreTimeBlockRequest $request)
@@ -42,7 +41,6 @@ class TimeBlockController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TimeBlock  $timeBlock
      * @return \Illuminate\Http\Response
      */
     public function show(TimeBlock $timeBlock)
@@ -53,7 +51,6 @@ class TimeBlockController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TimeBlock  $timeBlock
      * @return \Illuminate\Http\Response
      */
     public function edit(TimeBlock $timeBlock)
@@ -64,8 +61,6 @@ class TimeBlockController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTimeBlockRequest  $request
-     * @param  \App\Models\TimeBlock  $timeBlock
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateTimeBlockRequest $request, TimeBlock $timeBlock)
@@ -76,7 +71,6 @@ class TimeBlockController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TimeBlock  $timeBlock
      * @return \Illuminate\Http\Response
      */
     public function destroy(TimeBlock $timeBlock)

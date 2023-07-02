@@ -1,0 +1,946 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleController\\:\\:create\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleController\\:\\:destroy\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleController\\:\\:edit\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleController\\:\\:index\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleController\\:\\:show\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleController\\:\\:store\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleController\\:\\:update\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleLayoutController\\:\\:create\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleLayoutController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleLayoutController\\:\\:destroy\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleLayoutController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleLayoutController\\:\\:edit\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleLayoutController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleLayoutController\\:\\:index\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleLayoutController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleLayoutController\\:\\:show\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleLayoutController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleLayoutController\\:\\:store\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleLayoutController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\ScheduleLayoutController\\:\\:update\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/ScheduleLayoutController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\TimeBlockController\\:\\:create\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/TimeBlockController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\TimeBlockController\\:\\:destroy\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/TimeBlockController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\TimeBlockController\\:\\:edit\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/TimeBlockController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\TimeBlockController\\:\\:index\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/TimeBlockController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\TimeBlockController\\:\\:show\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/TimeBlockController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\TimeBlockController\\:\\:store\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/TimeBlockController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Admin\\\\TimeBlockController\\:\\:update\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Admin/TimeBlockController.php
+
+		-
+			message: "#^Parameter \\$layout of method App\\\\Http\\\\Controllers\\\\LayoutController\\:\\:destroy\\(\\) has invalid type App\\\\Models\\\\Layout\\.$#"
+			count: 1
+			path: app/Http/Controllers/LayoutController.php
+
+		-
+			message: "#^Parameter \\$layout of method App\\\\Http\\\\Controllers\\\\LayoutController\\:\\:edit\\(\\) has invalid type App\\\\Models\\\\Layout\\.$#"
+			count: 1
+			path: app/Http/Controllers/LayoutController.php
+
+		-
+			message: "#^Parameter \\$layout of method App\\\\Http\\\\Controllers\\\\LayoutController\\:\\:show\\(\\) has invalid type App\\\\Models\\\\Layout\\.$#"
+			count: 1
+			path: app/Http/Controllers/LayoutController.php
+
+		-
+			message: "#^Parameter \\$layout of method App\\\\Http\\\\Controllers\\\\LayoutController\\:\\:update\\(\\) has invalid type App\\\\Models\\\\Layout\\.$#"
+			count: 1
+			path: app/Http/Controllers/LayoutController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\ScheduleController\\:\\:calendar\\(\\) should return Illuminate\\\\Http\\\\Response but returns Illuminate\\\\View\\\\View\\.$#"
+			count: 1
+			path: app/Http/Controllers/ScheduleController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\ScheduleController\\:\\:show\\(\\) should return Illuminate\\\\Http\\\\Response but returns Illuminate\\\\View\\\\View\\.$#"
+			count: 1
+			path: app/Http/Controllers/ScheduleController.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Contracts\\\\LayoutDailyInterface\\:\\:getLayout\\(\\) has invalid return type App\\\\Jongman\\\\Contracts\\\\IReservationSlot\\.$#"
+			count: 1
+			path: app/Jongman/Contracts/LayoutDailyInterface.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Contracts\\\\LayoutScheduleInterface\\:\\:getLayout\\(\\) has invalid return type App\\\\Jongman\\\\Contracts\\\\SchedulePeriod\\.$#"
+			count: 1
+			path: app/Jongman/Contracts/LayoutScheduleInterface.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Contracts\\\\LayoutScheduleInterface\\:\\:getPeriod\\(\\) has invalid return type App\\\\Jongman\\\\Contracts\\\\SchedulePeriod\\.$#"
+			count: 1
+			path: app/Jongman/Contracts/LayoutScheduleInterface.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$date with type App\\\\Jongman\\\\Contracts\\\\Date is not subtype of native type Illuminate\\\\Support\\\\Carbon\\.$#"
+			count: 1
+			path: app/Jongman/Contracts/LayoutScheduleInterface.php
+
+		-
+			message: "#^Parameter \\$date of method App\\\\Jongman\\\\Contracts\\\\LayoutScheduleInterface\\:\\:getPeriod\\(\\) has invalid type App\\\\Jongman\\\\Contracts\\\\Date\\.$#"
+			count: 1
+			path: app/Jongman/Contracts/LayoutScheduleInterface.php
+
+		-
+			message: "#^Parameter \\$blackout of method App\\\\Jongman\\\\Contracts\\\\MutableReservationListingInterface\\:\\:addBlackout\\(\\) has invalid type App\\\\Jongman\\\\Contracts\\\\BlackoutItemView\\.$#"
+			count: 1
+			path: app/Jongman/Contracts/MutableReservationListingInterface.php
+
+		-
+			message: "#^Parameter \\$reservation of method App\\\\Jongman\\\\Contracts\\\\MutableReservationListingInterface\\:\\:add\\(\\) has invalid type App\\\\Jongman\\\\Contracts\\\\ReservationItemView\\.$#"
+			count: 1
+			path: app/Jongman/Contracts/MutableReservationListingInterface.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Contracts\\\\ReservationListingInterface\\:\\:onDateForResource\\(\\) has invalid return type App\\\\Jongman\\\\Contracts\\\\ReservationListItem\\.$#"
+			count: 1
+			path: app/Jongman/Contracts/ReservationListingInterface.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Contracts\\\\ReservationSlotInterface\\:\\:begin\\(\\) has invalid return type App\\\\Jongman\\\\Contracts\\\\Time\\.$#"
+			count: 1
+			path: app/Jongman/Contracts/ReservationSlotInterface.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Contracts\\\\ReservationSlotInterface\\:\\:end\\(\\) has invalid return type App\\\\Jongman\\\\Contracts\\\\Time\\.$#"
+			count: 1
+			path: app/Jongman/Contracts/ReservationSlotInterface.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Contracts\\\\ResourceReservationListingInterface\\:\\:reservations\\(\\) has invalid return type App\\\\Jongman\\\\Contracts\\\\ReservationListItem\\.$#"
+			count: 1
+			path: app/Jongman/Contracts/ResourceReservationListingInterface.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:dateCompare\\(\\)\\.$#"
+			count: 2
+			path: app/Jongman/DateRange.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:equals\\(\\)\\.$#"
+			count: 4
+			path: app/Jongman/DateRange.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:toUtc\\(\\)\\.$#"
+			count: 2
+			path: app/Jongman/DateRange.php
+
+		-
+			message: "#^Call to private method getDate\\(\\) of parent class Carbon\\\\Carbon\\.$#"
+			count: 2
+			path: app/Jongman/DateRange.php
+
+		-
+			message: "#^Method Carbon\\\\Carbon\\:\\:timezone\\(\\) invoked with 0 parameters, 1 required\\.$#"
+			count: 1
+			path: app/Jongman/DateRange.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$date with type App\\\\Jongman\\\\RFDate is not subtype of native type Illuminate\\\\Support\\\\Carbon\\.$#"
+			count: 1
+			path: app/Jongman/DateRange.php
+
+		-
+			message: "#^Parameter \\$date of method App\\\\Jongman\\\\DateRange\\:\\:contains\\(\\) has invalid type App\\\\Jongman\\\\RFDate\\.$#"
+			count: 1
+			path: app/Jongman/DateRange.php
+
+		-
+			message: "#^Access to property \\$description on an unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItem\\.$#"
+			count: 1
+			path: app/Jongman/Factories/SlotLabelFactory.php
+
+		-
+			message: "#^Access to property \\$fullName on an unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItem\\.$#"
+			count: 1
+			path: app/Jongman/Factories/SlotLabelFactory.php
+
+		-
+			message: "#^Access to property \\$title on an unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItem\\.$#"
+			count: 4
+			path: app/Jongman/Factories/SlotLabelFactory.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$reservation with type App\\\\Jongman\\\\Factories\\\\ReservationItemView is not subtype of native type App\\\\Jongman\\\\Reservations\\\\ReservationItem\\.$#"
+			count: 2
+			path: app/Jongman/Factories/SlotLabelFactory.php
+
+		-
+			message: "#^Parameter \\$reservation of method App\\\\Jongman\\\\Factories\\\\SlotLabelFactory\\:\\:create\\(\\) has invalid type App\\\\Jongman\\\\Factories\\\\ReservationItemView\\.$#"
+			count: 1
+			path: app/Jongman/Factories/SlotLabelFactory.php
+
+		-
+			message: "#^Parameter \\$reservation of method App\\\\Jongman\\\\Factories\\\\SlotLabelFactory\\:\\:create\\(\\) has invalid type App\\\\Jongman\\\\Reservations\\\\ReservationItem\\.$#"
+			count: 1
+			path: app/Jongman/Factories/SlotLabelFactory.php
+
+		-
+			message: "#^Parameter \\$reservation of method App\\\\Jongman\\\\Factories\\\\SlotLabelFactory\\:\\:format\\(\\) has invalid type App\\\\Jongman\\\\Factories\\\\ReservationItemView\\.$#"
+			count: 1
+			path: app/Jongman/Factories/SlotLabelFactory.php
+
+		-
+			message: "#^Parameter \\$reservation of method App\\\\Jongman\\\\Factories\\\\SlotLabelFactory\\:\\:format\\(\\) has invalid type App\\\\Jongman\\\\Reservations\\\\ReservationItem\\.$#"
+			count: 1
+			path: app/Jongman/Factories/SlotLabelFactory.php
+
+		-
+			message: "#^Parameter \\$reservation of method App\\\\Jongman\\\\Factories\\\\SlotLabelFactory\\:\\:getFullName\\(\\) has invalid type App\\\\Jongman\\\\Reservations\\\\ReservationItem\\.$#"
+			count: 1
+			path: app/Jongman/Factories/SlotLabelFactory.php
+
+		-
+			message: "#^Call to method BeginDate\\(\\) on an unknown class App\\\\Jongman\\\\Helpers\\\\SchedulePeriod\\.$#"
+			count: 2
+			path: app/Jongman/Helpers/CachedLayoutIndex.php
+
+		-
+			message: "#^Call to method endDate\\(\\) on an unknown class App\\\\Jongman\\\\Helpers\\\\SchedulePeriod\\.$#"
+			count: 2
+			path: app/Jongman/Helpers/CachedLayoutIndex.php
+
+		-
+			message: "#^Parameter \\$schedulePeriods of method App\\\\Jongman\\\\Helpers\\\\CachedLayoutIndex\\:\\:__construct\\(\\) has invalid type App\\\\Jongman\\\\Helpers\\\\SchedulePeriod\\.$#"
+			count: 1
+			path: app/Jongman/Helpers/CachedLayoutIndex.php
+
+		-
+			message: "#^Method Carbon\\\\Carbon\\:\\:timestamp\\(\\) invoked with 0 parameters, 1 required\\.$#"
+			count: 1
+			path: app/Jongman/Helpers/LayoutIndexCache.php
+
+		-
+			message: "#^Parameter \\$schedulePeriods of method App\\\\Jongman\\\\Helpers\\\\LayoutIndexCache\\:\\:add\\(\\) has invalid type App\\\\Jongman\\\\Helpers\\\\SchedulePeriod\\.$#"
+			count: 1
+			path: app/Jongman/Helpers/LayoutIndexCache.php
+
+		-
+			message: "#^Call to method beginDate\\(\\) on an unknown class App\\\\Jongman\\\\Contracts\\\\SchedulePeriod\\.$#"
+			count: 2
+			path: app/Jongman/Layouts/LayoutDaily.php
+
+		-
+			message: "#^Call to method beginsBefore\\(\\) on an unknown class App\\\\Jongman\\\\Contracts\\\\SchedulePeriod\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutDaily.php
+
+		-
+			message: "#^Call to method endDate\\(\\) on an unknown class App\\\\Jongman\\\\Contracts\\\\SchedulePeriod\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutDaily.php
+
+		-
+			message: "#^Call to method isLabeled\\(\\) on an unknown class App\\\\Jongman\\\\Contracts\\\\SchedulePeriod\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutDaily.php
+
+		-
+			message: "#^Call to method label\\(\\) on an unknown class App\\\\Jongman\\\\Contracts\\\\SchedulePeriod\\.$#"
+			count: 3
+			path: app/Jongman/Layouts/LayoutDaily.php
+
+		-
+			message: "#^Call to private method getDate\\(\\) of parent class Carbon\\\\Carbon\\.$#"
+			count: 3
+			path: app/Jongman/Layouts/LayoutDaily.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Layouts\\\\LayoutDaily\\:\\:getLayout\\(\\) has invalid return type App\\\\Jongman\\\\Contracts\\\\IReservationSlot\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutDaily.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\$periodsToReturn SpanablePeriod\\[\\]\\)\\: Unexpected token \"\\$periodsToReturn\", expected type at offset 9$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutDaily.php
+
+		-
+			message: "#^Access to constant RESERVABLE on an unknown class App\\\\Enums\\\\PeriodTypeEnum\\.$#"
+			count: 3
+			path: app/Jongman/Layouts/LayoutPeriod.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Support\\\\Carbon\\:\\:\\$weekday\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Access to constant NONRESERVABLE on an unknown class App\\\\Enums\\\\PeriodTypeEnum\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Access to constant RESERVABLE on an unknown class App\\\\Enums\\\\PeriodTypeEnum\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Argument of an invalid type App\\\\Jongman\\\\Layouts\\\\LayoutPeriod supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:dateEquals\\(\\)\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:setTimeFromString\\(\\)\\.$#"
+			count: 2
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Call to method add\\(\\) on an unknown class App\\\\Jongman\\\\Layouts\\\\PeriodList\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Call to private method getDate\\(\\) of parent class Carbon\\\\Carbon\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Cannot call method le\\(\\) on Illuminate\\\\Support\\\\Carbon\\|false\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Class App\\\\Jongman\\\\SchedulePeriod constructor invoked with 4 parameters, 2\\-3 required\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Class App\\\\Jongman\\\\SchedulePeriodNone constructor invoked with 4 parameters, 2\\-3 required\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Layouts\\\\LayoutSchedule\\:\\:getCachedValuesForDate\\(\\) should return array\\<App\\\\Jongman\\\\SchedulePeriod\\> but returns null\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Layouts\\\\LayoutSchedule\\:\\:getPeriod\\(\\) should return App\\\\Jongman\\\\SchedulePeriod but returns null\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Layouts\\\\LayoutSchedule\\:\\:parse\\(\\) has invalid return type App\\\\Jongman\\\\Layouts\\\\ScheduleLayout\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Layouts\\\\LayoutSchedule\\:\\:parseDaily\\(\\) has invalid return type App\\\\Jongman\\\\Layouts\\\\ScheduleLayout\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Layouts\\\\LayoutSchedule\\:\\:spansMidnight\\(\\) invoked with 3 parameters, 2 required\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Method Carbon\\\\Carbon\\:\\:setTimeFromTimeString\\(\\) invoked with 2 parameters, 1 required\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$end with type App\\\\Jongman\\\\Layouts\\\\Date is not subtype of native type Illuminate\\\\Support\\\\Carbon\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$start with type App\\\\Jongman\\\\Layouts\\\\Date is not subtype of native type Illuminate\\\\Support\\\\Carbon\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\$period LayoutPeriod\\)\\: Unexpected token \"\\$period\", expected type at offset 9$#"
+			count: 2
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Parameter \\$date of method App\\\\Jongman\\\\Layouts\\\\LayoutSchedule\\:\\:getPeriod\\(\\) has invalid type App\\\\Jongman\\\\Contracts\\\\Date\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Parameter \\$end of method App\\\\Jongman\\\\Layouts\\\\LayoutSchedule\\:\\:spansMidnight\\(\\) has invalid type App\\\\Jongman\\\\Layouts\\\\Date\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Parameter \\$list of method App\\\\Jongman\\\\Layouts\\\\LayoutSchedule\\:\\:addDailyPeriods\\(\\) has invalid type App\\\\Jongman\\\\Layouts\\\\PeriodList\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Parameter \\$start of method App\\\\Jongman\\\\Layouts\\\\LayoutSchedule\\:\\:spansMidnight\\(\\) has invalid type App\\\\Jongman\\\\Layouts\\\\Date\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\Layouts\\\\LayoutSchedule\\:\\:\\$cached is never read, only written\\.$#"
+			count: 1
+			path: app/Jongman/Layouts/LayoutSchedule.php
+
+		-
+			message: "#^Call to method getEndDate\\(\\) on an unknown class App\\\\Jongman\\\\Reservations\\\\IReservedItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListItem.php
+
+		-
+			message: "#^Call to method getId\\(\\) on an unknown class App\\\\Jongman\\\\Reservations\\\\IReservedItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListItem.php
+
+		-
+			message: "#^Call to method getResourceId\\(\\) on an unknown class App\\\\Jongman\\\\Reservations\\\\IReservedItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListItem.php
+
+		-
+			message: "#^Call to method getStartDate\\(\\) on an unknown class App\\\\Jongman\\\\Reservations\\\\IReservedItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListItem.php
+
+		-
+			message: "#^Call to method occursOn\\(\\) on an unknown class App\\\\Jongman\\\\Reservations\\\\IReservedItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListItem.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Reservations\\\\ReservationListItem\\:\\:buildSlot\\(\\) has invalid return type App\\\\Jongman\\\\Reservations\\\\IReservationSlot\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListItem.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Reservations\\\\ReservationListItem\\:\\:buildSlot\\(\\) should return App\\\\Jongman\\\\Reservations\\\\IReservationSlot but returns App\\\\Jongman\\\\Reservations\\\\ReservationSlot\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListItem.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\Reservations\\\\ReservationListItem\\:\\:\\$item \\(App\\\\Jongman\\\\Reservations\\\\IReservedItemView\\) does not accept App\\\\Jongman\\\\Contracts\\\\ReservedItemInterface\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListItem.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\Reservations\\\\ReservationListItem\\:\\:\\$item has unknown class App\\\\Jongman\\\\Reservations\\\\IReservedItemView as its type\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListItem.php
+
+		-
+			message: "#^Access to an offset on an unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItemView\\.$#"
+			count: 3
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:toTimezone\\(\\)\\.$#"
+			count: 2
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Call to method Format\\(\\) on an unknown class App\\\\Jongman\\\\Reservations\\\\Date\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Class App\\\\Jongman\\\\Reservations\\\\BlackoutListItem does not have a constructor and must be instantiated without any parameters\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Reservations\\\\ReservationListing\\:\\:onDateForResource\\(\\) has invalid return type App\\\\Jongman\\\\Contracts\\\\ReservationListItem\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Reservations\\\\ReservationListing\\:\\:onDateForResource\\(\\) should return array\\<App\\\\Jongman\\\\Contracts\\\\ReservationListItem\\> but returns App\\\\Jongman\\\\Reservations\\\\ReservationItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Reservations\\\\ReservationListing\\:\\:reservations\\(\\) has invalid return type App\\\\Jongman\\\\Contracts\\\\ReservationListItem\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Reservations\\\\ReservationListing\\:\\:reservations\\(\\) should return array\\<App\\\\Jongman\\\\Contracts\\\\ReservationListItem\\> but returns array\\<App\\\\Jongman\\\\Reservations\\\\ReservationItemView\\>\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Parameter \\$blackout of method App\\\\Jongman\\\\Reservations\\\\ReservationListing\\:\\:addBlackout\\(\\) has invalid type App\\\\Jongman\\\\Contracts\\\\BlackoutItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Parameter \\$date of method App\\\\Jongman\\\\Reservations\\\\ReservationListing\\:\\:onDate\\(\\) has invalid type App\\\\Jongman\\\\Reservations\\\\Date\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Parameter \\$reservation of method App\\\\Jongman\\\\Reservations\\\\ReservationListing\\:\\:add\\(\\) has invalid type App\\\\Jongman\\\\Contracts\\\\ReservationItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\Reservations\\\\ReservationListing\\:\\:\\$_reservationByResource has unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItemView as its type\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\Reservations\\\\ReservationListing\\:\\:\\$_reservations has unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItemView as its type\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\Reservations\\\\ReservationListing\\:\\:\\$_reservationsByDate has unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItemView as its type\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\Reservations\\\\ReservationListing\\:\\:\\$_reservationsByDateAndResource has unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItemView as its type\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationListing.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Auth\\\\AuthManager\\:\\:\\$user\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Access to property \\$id on an unknown class App\\\\Jongman\\\\Reservations\\\\User\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Access to property \\$instanceId on an unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Access to property \\$referenceNumber on an unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItemView\\.$#"
+			count: 2
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Access to property \\$requiresApproval on an unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Access to property \\$reservationId on an unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Access to property \\$userId on an unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:getTime\\(\\)\\.$#"
+			count: 2
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:toTimezone\\(\\)\\.$#"
+			count: 2
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Call to method get\\(\\) on an unknown class App\\\\Jongman\\\\Reservations\\\\User\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Call to method isUserInvited\\(\\) on an unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Call to method isUserParticipating\\(\\) on an unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Reservations\\\\ReservationSlot\\:\\:begin\\(\\) has invalid return type App\\\\Jongman\\\\Reservations\\\\Time\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Reservations\\\\ReservationSlot\\:\\:end\\(\\) has invalid return type App\\\\Jongman\\\\Reservations\\\\Time\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Method Carbon\\\\Traits\\\\Date\\:\\:setTime\\(\\) invoked with 1 parameter, 2\\-4 required\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$reservation with type App\\\\Jongman\\\\Reservations\\\\ReservationItemView is not subtype of native type App\\\\Jongman\\\\Reservations\\\\ReservationItem\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Parameter \\$reservation of method App\\\\Jongman\\\\Reservations\\\\ReservationSlot\\:\\:__construct\\(\\) has invalid type App\\\\Jongman\\\\Reservations\\\\ReservationItem\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Parameter \\$reservation of method App\\\\Jongman\\\\Reservations\\\\ReservationSlot\\:\\:__construct\\(\\) has invalid type App\\\\Jongman\\\\Reservations\\\\ReservationItemView\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Parameter \\$user of method App\\\\Jongman\\\\Reservations\\\\ReservationSlot\\:\\:isOwnedBy\\(\\) has invalid type App\\\\Jongman\\\\Reservations\\\\User\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Parameter \\$user of method App\\\\Jongman\\\\Reservations\\\\ReservationSlot\\:\\:isParticipating\\(\\) has invalid type App\\\\Jongman\\\\Reservations\\\\User\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\Reservations\\\\ReservationSlot\\:\\:\\$_reservation \\(App\\\\Jongman\\\\Reservations\\\\ReservationItemView\\) does not accept App\\\\Jongman\\\\Reservations\\\\ReservationItem\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\Reservations\\\\ReservationSlot\\:\\:\\$_reservation has unknown class App\\\\Jongman\\\\Reservations\\\\ReservationItemView as its type\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Variable \\$user in empty\\(\\) always exists and is not falsy\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlot.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:dateEquals\\(\\)\\.$#"
+			count: 2
+			path: app/Jongman/Reservations/ReservationSlotEmpty.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:getTime\\(\\)\\.$#"
+			count: 2
+			path: app/Jongman/Reservations/ReservationSlotEmpty.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:toTimezone\\(\\)\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlotEmpty.php
+
+		-
+			message: "#^Call to method toTimezone\\(\\) on an unknown class App\\\\Jongman\\\\Reservations\\\\Time\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlotEmpty.php
+
+		-
+			message: "#^Call to private method getDate\\(\\) of parent class Carbon\\\\Carbon\\.$#"
+			count: 2
+			path: app/Jongman/Reservations/ReservationSlotEmpty.php
+
+		-
+			message: "#^If condition is always false\\.$#"
+			count: 2
+			path: app/Jongman/Reservations/ReservationSlotEmpty.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Reservations\\\\ReservationSlotEmpty\\:\\:begin\\(\\) has invalid return type App\\\\Jongman\\\\Reservations\\\\Time\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlotEmpty.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Reservations\\\\ReservationSlotEmpty\\:\\:end\\(\\) has invalid return type App\\\\Jongman\\\\Reservations\\\\Time\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlotEmpty.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Reservations\\\\ReservationSlotEmpty\\:\\:endDate\\(\\) has invalid return type App\\\\Jongman\\\\Reservations\\\\Date\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlotEmpty.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\Reservations\\\\ReservationSlotEmpty\\:\\:endDate\\(\\) should return App\\\\Jongman\\\\Reservations\\\\Date but returns Illuminate\\\\Support\\\\Carbon\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlotEmpty.php
+
+		-
+			message: "#^Variable \\$constraint in empty\\(\\) always exists and is always falsy\\.$#"
+			count: 1
+			path: app/Jongman/Reservations/ReservationSlotEmpty.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\SchedulePeriodList\\:\\:\\$addedTimes is never read, only written\\.$#"
+			count: 1
+			path: app/Jongman/SchedulePeriodList.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:toTimezone\\(\\)\\.$#"
+			count: 2
+			path: app/Jongman/SchedulePeriodNone.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:toUtc\\(\\)\\.$#"
+			count: 2
+			path: app/Jongman/SchedulePeriodNone.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:compare\\(\\)\\.$#"
+			count: 1
+			path: app/Jongman/ScheduleReservationList.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\Carbon\\:\\:toTimezone\\(\\)\\.$#"
+			count: 5
+			path: app/Jongman/ScheduleReservationList.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\ScheduleReservationList\\:\\:findClosestLayoutIndexBeforeStartingTime\\(\\) should return App\\\\Jongman\\\\SchedulePeriod but returns null\\.$#"
+			count: 1
+			path: app/Jongman/ScheduleReservationList.php
+
+		-
+			message: "#^Method App\\\\Jongman\\\\ScheduleReservationList\\:\\:getItemStartingAt\\(\\) should return App\\\\Jongman\\\\Reservations\\\\ReservationListItem but returns null\\.$#"
+			count: 1
+			path: app/Jongman/ScheduleReservationList.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$layout with type App\\\\Jongman\\\\ScheduleLayoutInterface is not subtype of native type App\\\\Jongman\\\\Contracts\\\\LayoutScheduleInterface\\.$#"
+			count: 1
+			path: app/Jongman/ScheduleReservationList.php
+
+		-
+			message: "#^Parameter \\$layout of method App\\\\Jongman\\\\ScheduleReservationList\\:\\:__construct\\(\\) has invalid type App\\\\Jongman\\\\ScheduleLayoutInterface\\.$#"
+			count: 1
+			path: app/Jongman/ScheduleReservationList.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\ScheduleReservationList\\:\\:\\$_layout \\(App\\\\Jongman\\\\ScheduleLayoutInterface\\) does not accept App\\\\Jongman\\\\Contracts\\\\LayoutScheduleInterface\\.$#"
+			count: 1
+			path: app/Jongman/ScheduleReservationList.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\ScheduleReservationList\\:\\:\\$_layout has unknown class App\\\\Jongman\\\\ScheduleLayoutInterface as its type\\.$#"
+			count: 1
+			path: app/Jongman/ScheduleReservationList.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\ScheduleReservationList\\:\\:\\$_layoutItems \\(array\\<App\\\\Jongman\\\\SchedulePeriod\\>\\) does not accept array\\<App\\\\Jongman\\\\Contracts\\\\SchedulePeriod\\>\\.$#"
+			count: 1
+			path: app/Jongman/ScheduleReservationList.php
+
+		-
+			message: "#^Property App\\\\Jongman\\\\ScheduleReservationList\\:\\:\\$_midnight is never read, only written\\.$#"
+			count: 1
+			path: app/Jongman/ScheduleReservationList.php
+
+		-
+			message: "#^Static method Illuminate\\\\Log\\\\Logger\\:\\:error\\(\\) invoked with 5 parameters, 1\\-2 required\\.$#"
+			count: 1
+			path: app/Jongman/ScheduleReservationList.php
+
+		-
+			message: "#^Variable \\$layoutItem in empty\\(\\) always exists and is not falsy\\.$#"
+			count: 1
+			path: app/Jongman/ScheduleReservationList.php
+
+		-
+			message: "#^Cannot call method compare\\(\\) on Illuminate\\\\Support\\\\Carbon\\|false\\.$#"
+			count: 1
+			path: app/Jongman/Time.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\ScheduleLayoutPolicy\\:\\:create\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/ScheduleLayoutPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\ScheduleLayoutPolicy\\:\\:delete\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/ScheduleLayoutPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\ScheduleLayoutPolicy\\:\\:forceDelete\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/ScheduleLayoutPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\ScheduleLayoutPolicy\\:\\:restore\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/ScheduleLayoutPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\ScheduleLayoutPolicy\\:\\:update\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/ScheduleLayoutPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\ScheduleLayoutPolicy\\:\\:view\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/ScheduleLayoutPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\ScheduleLayoutPolicy\\:\\:viewAny\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/ScheduleLayoutPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\SchedulePolicy\\:\\:create\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/SchedulePolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\SchedulePolicy\\:\\:delete\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/SchedulePolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\SchedulePolicy\\:\\:forceDelete\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/SchedulePolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\SchedulePolicy\\:\\:restore\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/SchedulePolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\SchedulePolicy\\:\\:update\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/SchedulePolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\SchedulePolicy\\:\\:view\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/SchedulePolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\SchedulePolicy\\:\\:viewAny\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/SchedulePolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\TimeBlockPolicy\\:\\:create\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/TimeBlockPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\TimeBlockPolicy\\:\\:delete\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/TimeBlockPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\TimeBlockPolicy\\:\\:forceDelete\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/TimeBlockPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\TimeBlockPolicy\\:\\:restore\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/TimeBlockPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\TimeBlockPolicy\\:\\:update\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/TimeBlockPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\TimeBlockPolicy\\:\\:view\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/TimeBlockPolicy.php
+
+		-
+			message: "#^Method App\\\\Policies\\\\TimeBlockPolicy\\:\\:viewAny\\(\\) should return bool\\|Illuminate\\\\Auth\\\\Access\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Policies/TimeBlockPolicy.php
+
+		-
+			message: "#^Call to an undefined method App\\\\Providers\\\\AppServiceProvider\\:\\:clone\\(\\)\\.$#"
+			count: 1
+			path: app/Providers/AppServiceProvider.php

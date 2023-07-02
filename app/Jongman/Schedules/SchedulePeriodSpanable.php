@@ -1,15 +1,10 @@
 <?php
 
-namespace App\Jongman;
+namespace App\Jongman\Schedules;
 
-/**
- * 
- * @package App\Jongman
- * Make SchedulePeriod spanable (use more slots)
- */
 class SchedulePeriodSpanable extends SchedulePeriod
 {
-    public function __construct(private SchedulePeriod $period, private int $span = 1) 
+    public function __construct(private SchedulePeriod $period, private int $span = 1)
     {
         $this->span = $span;
         $this->period = $period;
